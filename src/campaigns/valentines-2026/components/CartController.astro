@@ -14,6 +14,7 @@
   const customerName = document.querySelector<HTMLInputElement>("#customer-name");
   const orderNotes = document.querySelector<HTMLTextAreaElement>("#order-notes");
   const sendButton = document.querySelector<HTMLAnchorElement>("#send-whatsapp");
+  const finishButtons = document.querySelectorAll<HTMLAnchorElement>("#basket-finish-order");
 
   const readState = (): CartState => {
     try {
@@ -41,6 +42,14 @@
     if (cartToggleLabel) {
       cartToggleLabel.textContent = isOpen ? "Ocultar resumo" : "Ver resumo";
     }
+  };
+
+  const setOrderButtonState = (button: HTMLAnchorElement, isEnabled: boolean, href: string) => {
+    button.href = isEnabled ? href : "#";
+    button.setAttribute("aria-disabled", String(!isEnabled));
+    button.tabIndex = isEnabled ? 0 : -1;
+    button.classList.toggle("opacity-55", !isEnabled);
+    button.classList.toggle("opacity-100", isEnabled);
   };
 
   const removeProduct = (id: string, option?: string) => {
@@ -165,10 +174,15 @@
       }
     }
 
+    const message = formatOrderMessage(state);
+    const orderUrl = createWhatsAppLink(phoneNumber, message);
+    const hasItems = getCartCount(state) > 0;
+
     if (sendButton) {
-      const message = formatOrderMessage(state);
-      sendButton.href = createWhatsAppLink(phoneNumber, message);
+      sendButton.href = orderUrl;
     }
+
+    finishButtons.forEach((button) => setOrderButtonState(button, hasItems, orderUrl));
   };
 
   const syncBasketCard = (id: string) => {
@@ -246,6 +260,14 @@
 
   toggleCart?.addEventListener("click", () => {
     setCartOpen(cartPanel?.classList.contains("hidden") ?? true);
+  });
+
+  finishButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      if (button.getAttribute("aria-disabled") === "true") {
+        event.preventDefault();
+      }
+    });
   });
 
   customerName?.addEventListener("input", render);
