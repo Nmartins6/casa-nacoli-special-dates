@@ -61,7 +61,7 @@ export const basketItems: BasketItem[] = [
   },
   {
     id: "balao-coracao",
-    name: "Balão decorativo em forma de coração",
+    name: "Balão decorativo em forma de mini coração",
     description: "O detalhe visual que deixa a entrega mais romântica.",
     image: basketImage,
     imageAlt: "Balão decorativo em forma de coração",
@@ -85,7 +85,7 @@ export const basketItems: BasketItem[] = [
   },
   {
     id: "vela",
-    name: "Vela",
+    name: "Vela decorativa",
     description: "Para criar atmosfera de cuidado, calma e presença.",
     image: basketImage,
     imageAlt: "Vela para cesta personalizada",
@@ -102,7 +102,7 @@ export const basketItems: BasketItem[] = [
   {
     id: "caneca-personalizada",
     name: "Caneca personalizada",
-    description: "Para incluir foto, frase, nome ou uma arte especial dentro da cesta.",
+    description: "Incluindo arte com foto, frase, nome ou uma arte especial dentro da cesta.",
     image: basketImage,
     imageAlt: "Caneca personalizada para cesta de Dia dos Namorados",
     suggestedQuantity: 1,
@@ -126,7 +126,7 @@ export const basketItems: BasketItem[] = [
   {
     id: "azulejo-personalizado",
     name: "Azulejo personalizado",
-    description: "Uma lembrança com foto ou frase para transformar a cesta em presente de guardar.",
+    description: "Uma lembrança com foto ou frase para transformar a cesta em presente para eternizar.",
     image: basketImage,
     imageAlt: "Azulejo personalizado para cesta",
     suggestedQuantity: 1,

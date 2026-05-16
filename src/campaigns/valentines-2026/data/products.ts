@@ -96,11 +96,11 @@ export const products: Product[] = [
     options: ["Foto", "Logo", "Frase"],
   },
   {
-    id: "placa-mdf-sublimada",
-    name: "Placa MDF sublimada",
+    id: "quadro-mdf-sublimado",
+    name: "Quadro MDF sublimado",
     category: "Decoração",
     description:
-      "Uma placa personalizada para transformar declaração em peça decorativa, com acabamento artesanal e presença bonita.",
+      "Uma placa personalizada para transformar um momento em peça decorativa, com acabamento artesanal e presença.",
     price: "sob consulta",
     image: productImage,
     imageAlt: "Placa MDF sublimada personalizada",
@@ -134,7 +134,7 @@ export const products: Product[] = [
     name: "Chaveiro MDF personalizado",
     category: "Lembranças",
     description:
-      "Uma lembrança prática para carregar por perto, personalizada com foto, nome, frase ou desenho.",
+      "Uma lembrança prática para carregar o seu amor por onde for.",
     price: "sob consulta",
     image: productImage,
     imageAlt: "Chaveiro MDF personalizado",
@@ -161,16 +161,5 @@ export const products: Product[] = [
     image: productImage,
     imageAlt: "Camiseta personalizada",
     options: ["P", "M", "G", "GG"],
-  },
-  {
-    id: "ecobag-personalizada",
-    name: "Ecobag personalizada",
-    category: "Vestuário",
-    description:
-      "Útil, bonita e afetiva. Uma ecobag personalizada para acompanhar a rotina com um detalhe só de vocês.",
-    price: "sob consulta",
-    image: productImage,
-    imageAlt: "Ecobag personalizada",
-    options: ["Frase", "Ilustração", "Nome"],
   },
 ];
