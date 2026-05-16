@@ -7,6 +7,7 @@
   const phoneNumber = cartRoot?.dataset.whatsappNumber ?? "55NUMEROAQUI";
   const cartPanel = document.querySelector<HTMLElement>("#cart-panel");
   const toggleCart = document.querySelector<HTMLButtonElement>("#toggle-cart");
+  const cartToggleLabel = document.querySelector<HTMLElement>("#cart-toggle-label");
   const cartCount = document.querySelector<HTMLElement>("#cart-count");
   const productList = document.querySelector<HTMLElement>("#cart-products");
   const basketList = document.querySelector<HTMLElement>("#cart-basket");
@@ -32,6 +33,14 @@
   const normalizeQuantity = (value: string | number) => {
     const quantity = Number(value);
     return Number.isFinite(quantity) && quantity > 0 ? Math.floor(quantity) : 1;
+  };
+
+  const setCartOpen = (isOpen: boolean) => {
+    cartPanel?.classList.toggle("hidden", !isOpen);
+    toggleCart?.setAttribute("aria-expanded", String(isOpen));
+    if (cartToggleLabel) {
+      cartToggleLabel.textContent = isOpen ? "Ocultar resumo" : "Ver resumo";
+    }
   };
 
   const removeProduct = (id: string, option?: string) => {
@@ -187,8 +196,7 @@
         state.products.push({ id, name, option, quantity });
       }
 
-      cartPanel?.classList.remove("hidden");
-      toggleCart?.setAttribute("aria-expanded", "true");
+      setCartOpen(true);
       render();
     });
   });
@@ -237,9 +245,7 @@
   });
 
   toggleCart?.addEventListener("click", () => {
-    const isClosed = cartPanel?.classList.contains("hidden");
-    cartPanel?.classList.toggle("hidden");
-    toggleCart.setAttribute("aria-expanded", String(isClosed));
+    setCartOpen(cartPanel?.classList.contains("hidden") ?? true);
   });
 
   customerName?.addEventListener("input", render);
@@ -247,5 +253,6 @@
 
   if (customerName) customerName.value = state.customerName;
   if (orderNotes) orderNotes.value = state.notes;
+  setCartOpen(false);
   render();
 </script>

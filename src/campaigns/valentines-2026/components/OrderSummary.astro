@@ -22,16 +22,16 @@ const { campaign } = Astro.props;
       </div>
       <button
         id="toggle-cart"
-        class="focus-ring min-h-10 rounded-full border border-[#E1B78F] bg-white px-4 text-sm font-black text-[#703D25] lg:hidden"
+        class="focus-ring min-h-10 rounded-full border border-[#E1B78F] bg-white px-4 text-sm font-black text-[#703D25] transition hover:border-[#C06445] hover:text-[#C06445]"
         type="button"
         aria-expanded="false"
         aria-controls="cart-panel"
       >
-        Ver itens <span id="cart-count">(0)</span>
+        <span id="cart-toggle-label">Ver resumo</span> <span id="cart-count">(0)</span>
       </button>
     </div>
 
-    <div id="cart-panel" class="mt-4 hidden max-h-[72vh] overflow-y-auto pb-2 lg:block">
+    <div id="cart-panel" class="mt-4 hidden max-h-[72vh] overflow-y-auto pb-2">
       <div class="grid gap-4">
         <div>
           <h3 class="text-sm font-black text-[#703D25]">Produtos escolhidos</h3>
