@@ -36,11 +36,11 @@ export const basketItems: BasketItem[] = [
     suggestedQuantity: 4,
   },
   {
-    id: "bolacha",
-    name: "Bolacha",
-    description: "Um detalhe gostoso para deixar a cesta mais completa.",
+    id: "guloseimas",
+    name: "Guloseimas",
+    description: "Detalhes gostosos para deixar a cesta mais completa.",
     image: basketImage,
-    imageAlt: "Bolacha para cesta personalizada",
+    imageAlt: "Guloseimas para cesta personalizada",
     suggestedQuantity: 1,
   },
   {
