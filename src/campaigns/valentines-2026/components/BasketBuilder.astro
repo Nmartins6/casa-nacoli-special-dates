@@ -62,12 +62,12 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
         </div>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div class="grid gap-5 md:grid-cols-2">
         {items.map((item) => (
-          <article class="basket-card rounded-2xl border border-white/15 bg-white/10 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/[0.13]" data-basket-id={item.id} data-basket-name={item.name}>
+          <article class="basket-card min-w-0 rounded-2xl border border-white/15 bg-white/10 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/[0.13]" data-basket-id={item.id} data-basket-name={item.name}>
             <div class="flex gap-4">
               <img src={item.image} alt={item.imageAlt} class="h-16 w-16 rounded-xl object-cover" width="160" height="160" loading="lazy" />
-              <div>
+              <div class="min-w-0">
                 <h3 class="font-black text-white">{item.name}</h3>
                 <p class="mt-1 text-sm leading-5 text-[#FBEEDE]">{item.description}</p>
               </div>
@@ -77,13 +77,13 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
                 <input class="basket-selected h-5 w-5 accent-[#F5A728]" type="checkbox" />
                 Selecionar item
               </label>
-              <label class="grid gap-1 text-sm font-bold text-[#FBEEDE]">
+              <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
                 Quantidade
-                <input class="basket-quantity focus-ring min-h-11 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="number" min="1" value={item.suggestedQuantity ?? 1} inputmode="numeric" />
+                <input class="basket-quantity focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="number" min="1" value={item.suggestedQuantity ?? 1} inputmode="numeric" />
               </label>
-              <label class="grid gap-1 text-sm font-bold text-[#FBEEDE]">
+              <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
                 Observação
-                <input class="basket-note focus-ring min-h-11 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="text" placeholder="Ex.: sabor, marca, preferência" />
+                <input class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="text" placeholder="Ex.: sabor, marca, preferência" />
               </label>
             </div>
           </article>
