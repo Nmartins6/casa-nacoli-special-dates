@@ -5,6 +5,7 @@ import BaseLayout from "@shared/layouts/BaseLayout.astro";
 import BasketBuilder from "../components/BasketBuilder.astro";
 import Benefits from "../components/Benefits.astro";
 import CartController from "../components/CartController.astro";
+import FeaturedBasket from "../components/FeaturedBasket.astro";
 import Hero from "../components/Hero.astro";
 import OrderSummary from "../components/OrderSummary.astro";
 import ProductCatalog from "../components/ProductCatalog.astro";
@@ -18,9 +19,10 @@ import { products } from "../data/products";
   <Header campaign={campaign} />
   <main>
     <Hero />
+    <FeaturedBasket />
+    <BasketBuilder items={basketItems} />
     <Benefits />
     <ProductCatalog products={products} />
-    <BasketBuilder items={basketItems} />
     <TrustAndFaq />
   </main>
   <Footer campaign={campaign} />

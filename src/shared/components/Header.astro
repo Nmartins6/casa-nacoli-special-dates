@@ -9,7 +9,7 @@ type Props = {
 const { campaign } = Astro.props;
 const quickMessage = formatOrderMessage({
   customerName: "",
-  notes: "Vim pelo site e quero montar um presente personalizado.",
+  notes: "Vim pelo site e quero montar uma cesta personalizada de Dia dos Namorados.",
   products: [],
   basketItems: [],
 });
@@ -29,8 +29,8 @@ const whatsappUrl = createWhatsAppLink(campaign.whatsappNumber, quickMessage);
     </a>
 
     <nav class="hidden items-center gap-6 text-sm font-bold text-[#703D25] md:flex" aria-label="Principal">
-      <a class="focus-ring rounded-md hover:text-[#C06445]" href="#produtos">Produtos</a>
       <a class="focus-ring rounded-md hover:text-[#C06445]" href="#cesta">Cesta personalizada</a>
+      <a class="focus-ring rounded-md hover:text-[#C06445]" href="#produtos">Complementos</a>
       <a class="focus-ring rounded-md hover:text-[#C06445]" href="#faq">Dúvidas</a>
     </nav>
 
@@ -40,7 +40,7 @@ const whatsappUrl = createWhatsAppLink(campaign.whatsappNumber, quickMessage);
       target="_blank"
       rel="noreferrer"
     >
-      Pedir pelo WhatsApp
+      Montar cesta
     </a>
   </div>
 </header>
