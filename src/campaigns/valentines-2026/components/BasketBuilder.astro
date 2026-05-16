@@ -3,6 +3,7 @@ import SectionHeading from "@shared/components/SectionHeading.astro";
 import type { BasketItem } from "@shared/types/campaign";
 import { campaign } from "../data/campaign";
 import { createWhatsAppLink, formatOrderMessage } from "@shared/utils/whatsapp";
+import BasketItemIcon from "./BasketItemIcon.astro";
 
 type Props = {
   items: BasketItem[];
@@ -62,7 +63,7 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
         {items.map((item) => (
           <article class="basket-card min-w-0 rounded-2xl border border-white/15 bg-white/10 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/[0.13]" data-basket-id={item.id} data-basket-name={item.name}>
             <div class="flex gap-4">
-              <img src={item.image} alt={item.imageAlt} class="h-16 w-16 rounded-xl object-cover" width="160" height="160" loading="lazy" />
+              <BasketItemIcon itemId={item.id} />
               <div class="min-w-0">
                 <h3 class="font-black text-white">{item.name}</h3>
                 <p class="mt-1 text-sm leading-5 text-[#FBEEDE]">{item.description}</p>
