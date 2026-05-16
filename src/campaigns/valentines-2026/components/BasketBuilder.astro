@@ -1,0 +1,56 @@
+---
+import SectionHeading from "@shared/components/SectionHeading.astro";
+import type { BasketItem } from "@shared/types/campaign";
+
+type Props = {
+  items: BasketItem[];
+};
+
+const { items } = Astro.props;
+---
+
+<section id="cesta" class="bg-[#703D25] px-4 py-16 text-white sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div class="lg:sticky lg:top-24">
+        <SectionHeading
+          eyebrow="Produto especial"
+          title="Monte uma cesta personalizada de Dia dos Namorados"
+          description="Selecione os itens que combinam com a surpresa. A Casa Nacoli confirma disponibilidade, acabamento e valores pelo WhatsApp antes de produzir."
+          tone="dark"
+        />
+        <p class="mt-5 rounded-2xl border border-white/15 bg-white/10 p-4 text-sm font-semibold leading-6 text-[#FBEEDE]">
+          Quer algo fora da lista? Nos chame no WhatsApp e vamos montar o presente para o seu amor com os detalhes que fazem sentido para vocês.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {items.map((item) => (
+          <article class="basket-card rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur" data-basket-id={item.id} data-basket-name={item.name}>
+            <div class="flex gap-4">
+              <img src={item.image} alt={item.imageAlt} class="h-16 w-16 rounded-xl object-cover" width="160" height="160" loading="lazy" />
+              <div>
+                <h3 class="font-black text-white">{item.name}</h3>
+                <p class="mt-1 text-sm leading-5 text-[#FBEEDE]">{item.description}</p>
+              </div>
+            </div>
+            <div class="mt-4 grid gap-3">
+              <label class="flex items-center gap-3 text-sm font-bold text-white">
+                <input class="basket-selected h-5 w-5 accent-[#F5A728]" type="checkbox" />
+                Selecionar item
+              </label>
+              <label class="grid gap-1 text-sm font-bold text-[#FBEEDE]">
+                Quantidade
+                <input class="basket-quantity focus-ring min-h-11 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="number" min="1" value={item.suggestedQuantity ?? 1} inputmode="numeric" />
+              </label>
+              <label class="grid gap-1 text-sm font-bold text-[#FBEEDE]">
+                Observação
+                <input class="basket-note focus-ring min-h-11 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="text" placeholder="Ex.: sabor, marca, preferência" />
+              </label>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

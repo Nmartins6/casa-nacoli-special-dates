@@ -1,0 +1,29 @@
+---
+import Footer from "@shared/components/Footer.astro";
+import Header from "@shared/components/Header.astro";
+import BaseLayout from "@shared/layouts/BaseLayout.astro";
+import BasketBuilder from "../components/BasketBuilder.astro";
+import Benefits from "../components/Benefits.astro";
+import CartController from "../components/CartController.astro";
+import Hero from "../components/Hero.astro";
+import OrderSummary from "../components/OrderSummary.astro";
+import ProductCatalog from "../components/ProductCatalog.astro";
+import TrustAndFaq from "../components/TrustAndFaq.astro";
+import { basketItems } from "../data/basketItems";
+import { campaign } from "../data/campaign";
+import { products } from "../data/products";
+---
+
+<BaseLayout campaign={campaign}>
+  <Header campaign={campaign} />
+  <main>
+    <Hero />
+    <Benefits />
+    <ProductCatalog products={products} />
+    <BasketBuilder items={basketItems} />
+    <TrustAndFaq />
+  </main>
+  <Footer campaign={campaign} />
+  <OrderSummary campaign={campaign} />
+  <CartController />
+</BaseLayout>

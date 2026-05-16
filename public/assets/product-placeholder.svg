@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Produto personalizado Casa Nacoli">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf2"/>
+      <stop offset="1" stop-color="#FBEEDE"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#E1B78F" opacity=".35"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="360" fill="url(#paper)"/>
+  <rect width="640" height="360" fill="url(#dots)"/>
+  <rect x="70" y="68" width="500" height="224" rx="26" fill="#fff" opacity=".72"/>
+  <path d="M190 242h130c42 0 74-32 74-74v-35H155v74c0 19 16 35 35 35Z" fill="#FBEEDE" stroke="#703D25" stroke-width="7"/>
+  <path d="M394 147h38c27 0 48 21 48 48s-21 48-48 48h-38" fill="none" stroke="#703D25" stroke-width="7"/>
+  <path d="M257 135c24-34 83-22 86 23 2 37-38 61-86 91-48-30-88-54-86-91 3-45 62-57 86-23Z" fill="#C06445"/>
+  <path d="M133 88h70M437 272h70" stroke="#F5A728" stroke-width="10" stroke-linecap="round"/>
+  <text x="320" y="321" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#703D25">Casa Nacoli</text>
+</svg>

@@ -1,0 +1,35 @@
+---
+import type { Campaign } from "@shared/types/campaign";
+
+type Props = {
+  campaign: Campaign;
+};
+
+const { campaign } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[#E1B78F] bg-[#FBEEDE] px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
+    <div>
+      <p class="text-xl font-black text-[#703D25]">Casa Nacoli</p>
+      <p class="mt-2 max-w-xl text-sm leading-6 text-[#6f4a35]">
+        Gráfica artesanal e presentes personalizados feitos com carinho e afeto.
+      </p>
+      <p class="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-[#C06445]">
+        Campanha {campaign.season} {campaign.year}
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-3 text-sm font-black">
+      <a class="focus-ring rounded-full border border-[#E1B78F] bg-white/70 px-4 py-2 text-[#703D25]" href={`https://wa.me/${campaign.whatsappNumber}`} target="_blank" rel="noreferrer">
+        WhatsApp
+      </a>
+      <a class="focus-ring rounded-full border border-[#E1B78F] bg-white/70 px-4 py-2 text-[#703D25]" href={campaign.instagramUrl} target="_blank" rel="noreferrer">
+        Instagram
+      </a>
+    </div>
+  </div>
+  <p class="mx-auto mt-8 max-w-7xl text-xs text-[#7c5942]">
+    © {year} Casa Nacoli. Todos os direitos reservados.
+  </p>
+</footer>

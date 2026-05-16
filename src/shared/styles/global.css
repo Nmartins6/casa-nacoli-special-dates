@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #fbeede;
+  --burnt-red: #c06445;
+  --artisan-blue: #2f7cb6;
+  --warm-yellow: #f5a728;
+  --deep-brown: #703d25;
+  --beige: #e1b78f;
+  --ink: #3b2519;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 16px 16px, rgba(112, 61, 37, 0.05) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(251, 238, 222, 0.98), rgba(255, 248, 238, 0.96));
+  background-size: 28px 28px, auto;
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.paper-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 252, 247, 0.94), rgba(251, 238, 222, 0.76)),
+    radial-gradient(circle at top left, rgba(245, 167, 40, 0.16), transparent 36%);
+  box-shadow: 0 20px 60px rgba(112, 61, 37, 0.12);
+}
+
+.focus-ring:focus-visible {
+  outline: 3px solid rgba(47, 124, 182, 0.45);
+  outline-offset: 3px;
+}
+
+.soft-enter {
+  animation: soft-enter 0.45s ease both;
+}
+
+@keyframes soft-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
