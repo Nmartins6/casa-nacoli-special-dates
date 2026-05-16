@@ -1,0 +1,251 @@
+<script>
+  import { CART_STORAGE_KEY, emptyCartState, getCartCount } from "@shared/utils/cart";
+  import type { CartState } from "@shared/utils/cart";
+  import { createWhatsAppLink, formatOrderMessage } from "@shared/utils/whatsapp";
+
+  const cartRoot = document.querySelector<HTMLElement>("#pedido");
+  const phoneNumber = cartRoot?.dataset.whatsappNumber ?? "55NUMEROAQUI";
+  const cartPanel = document.querySelector<HTMLElement>("#cart-panel");
+  const toggleCart = document.querySelector<HTMLButtonElement>("#toggle-cart");
+  const cartCount = document.querySelector<HTMLElement>("#cart-count");
+  const productList = document.querySelector<HTMLElement>("#cart-products");
+  const basketList = document.querySelector<HTMLElement>("#cart-basket");
+  const customerName = document.querySelector<HTMLInputElement>("#customer-name");
+  const orderNotes = document.querySelector<HTMLTextAreaElement>("#order-notes");
+  const sendButton = document.querySelector<HTMLAnchorElement>("#send-whatsapp");
+
+  const readState = (): CartState => {
+    try {
+      const saved = window.localStorage.getItem(CART_STORAGE_KEY);
+      return saved ? { ...emptyCartState, ...JSON.parse(saved) } : { ...emptyCartState };
+    } catch {
+      return { ...emptyCartState };
+    }
+  };
+
+  let state: CartState = readState();
+
+  const saveState = () => {
+    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state));
+  };
+
+  const normalizeQuantity = (value: string | number) => {
+    const quantity = Number(value);
+    return Number.isFinite(quantity) && quantity > 0 ? Math.floor(quantity) : 1;
+  };
+
+  const removeProduct = (id: string, option?: string) => {
+    state.products = state.products.filter((item) => !(item.id === id && item.option === option));
+    render();
+  };
+
+  const removeBasketItem = (id: string) => {
+    state.basketItems = state.basketItems.filter((item) => item.id !== id);
+    const card = document.querySelector<HTMLElement>(`.basket-card[data-basket-id="${id}"]`);
+    card?.querySelector<HTMLInputElement>(".basket-selected")?.click();
+    render();
+  };
+
+  const createLine = ({
+    label,
+    detail,
+    quantity,
+    onQuantity,
+    onRemove,
+  }: {
+    label: string;
+    detail?: string;
+    quantity: number;
+    onQuantity: (quantity: number) => void;
+    onRemove: () => void;
+  }) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "grid grid-cols-[1fr_auto] gap-3 rounded-xl bg-[#FBEEDE] p-3";
+
+    const text = document.createElement("div");
+    const title = document.createElement("p");
+    title.className = "font-black text-[#703D25]";
+    title.textContent = label;
+    text.append(title);
+
+    if (detail) {
+      const detailText = document.createElement("p");
+      detailText.className = "mt-1 text-xs leading-5 text-[#7c5942]";
+      detailText.textContent = detail;
+      text.append(detailText);
+    }
+
+    const controls = document.createElement("div");
+    controls.className = "flex items-center gap-2";
+
+    const input = document.createElement("input");
+    input.className = "focus-ring h-9 w-16 rounded-lg border border-[#E1B78F] bg-white px-2 text-center text-sm font-bold";
+    input.type = "number";
+    input.min = "1";
+    input.value = String(quantity);
+    input.addEventListener("change", () => onQuantity(normalizeQuantity(input.value)));
+
+    const button = document.createElement("button");
+    button.className = "focus-ring h-9 rounded-lg border border-[#E1B78F] bg-white px-3 text-xs font-black text-[#C06445]";
+    button.type = "button";
+    button.textContent = "Remover";
+    button.addEventListener("click", onRemove);
+
+    controls.append(input, button);
+    wrapper.append(text, controls);
+    return wrapper;
+  };
+
+  const render = () => {
+    state.customerName = customerName?.value ?? state.customerName;
+    state.notes = orderNotes?.value ?? state.notes;
+    saveState();
+
+    if (cartCount) {
+      cartCount.textContent = `(${getCartCount(state)})`;
+    }
+
+    if (productList) {
+      productList.replaceChildren();
+      if (!state.products.length) {
+        const empty = document.createElement("p");
+        empty.className = "rounded-xl bg-[#FBEEDE] p-3";
+        empty.textContent = "Nenhum produto selecionado ainda.";
+        productList.append(empty);
+      } else {
+        state.products.forEach((item) => {
+          productList.append(
+            createLine({
+              label: item.name,
+              detail: item.option ? `Opção: ${item.option}` : undefined,
+              quantity: item.quantity,
+              onQuantity: (quantity) => {
+                item.quantity = quantity;
+                render();
+              },
+              onRemove: () => removeProduct(item.id, item.option),
+            }),
+          );
+        });
+      }
+    }
+
+    if (basketList) {
+      basketList.replaceChildren();
+      if (!state.basketItems.length) {
+        const empty = document.createElement("p");
+        empty.className = "rounded-xl bg-[#FBEEDE] p-3";
+        empty.textContent = "Nenhum item de cesta selecionado ainda.";
+        basketList.append(empty);
+      } else {
+        state.basketItems.forEach((item) => {
+          basketList.append(
+            createLine({
+              label: item.name,
+              detail: item.note ? `Observação: ${item.note}` : undefined,
+              quantity: item.quantity,
+              onQuantity: (quantity) => {
+                item.quantity = quantity;
+                syncBasketCard(item.id);
+                render();
+              },
+              onRemove: () => removeBasketItem(item.id),
+            }),
+          );
+        });
+      }
+    }
+
+    if (sendButton) {
+      const message = formatOrderMessage(state);
+      sendButton.href = createWhatsAppLink(phoneNumber, message);
+    }
+  };
+
+  const syncBasketCard = (id: string) => {
+    const item = state.basketItems.find((basketItem) => basketItem.id === id);
+    const card = document.querySelector<HTMLElement>(`.basket-card[data-basket-id="${id}"]`);
+    const quantity = card?.querySelector<HTMLInputElement>(".basket-quantity");
+    if (item && quantity) {
+      quantity.value = String(item.quantity);
+    }
+  };
+
+  document.querySelectorAll<HTMLElement>(".product-card").forEach((card) => {
+    card.querySelector<HTMLButtonElement>(".add-product")?.addEventListener("click", () => {
+      const id = card.dataset.productId;
+      const name = card.dataset.productName;
+      if (!id || !name) return;
+
+      const option = card.querySelector<HTMLSelectElement>(".product-option")?.value;
+      const quantity = normalizeQuantity(card.querySelector<HTMLInputElement>(".product-quantity")?.value ?? 1);
+      const existing = state.products.find((item) => item.id === id && item.option === option);
+
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        state.products.push({ id, name, option, quantity });
+      }
+
+      cartPanel?.classList.remove("hidden");
+      toggleCart?.setAttribute("aria-expanded", "true");
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>(".basket-card").forEach((card) => {
+    const checkbox = card.querySelector<HTMLInputElement>(".basket-selected");
+    const quantityInput = card.querySelector<HTMLInputElement>(".basket-quantity");
+    const noteInput = card.querySelector<HTMLInputElement>(".basket-note");
+    const id = card.dataset.basketId;
+    const name = card.dataset.basketName;
+
+    const upsertBasketItem = () => {
+      if (!id || !name || !checkbox?.checked) return;
+      const quantity = normalizeQuantity(quantityInput?.value ?? 1);
+      const note = noteInput?.value.trim();
+      const existing = state.basketItems.find((item) => item.id === id);
+
+      if (existing) {
+        existing.quantity = quantity;
+        existing.note = note;
+      } else {
+        state.basketItems.push({ id, name, quantity, note });
+      }
+      render();
+    };
+
+    checkbox?.addEventListener("change", () => {
+      if (!id || !name) return;
+      if (checkbox.checked) {
+        upsertBasketItem();
+      } else {
+        state.basketItems = state.basketItems.filter((item) => item.id !== id);
+        render();
+      }
+    });
+
+    quantityInput?.addEventListener("change", upsertBasketItem);
+    noteInput?.addEventListener("input", upsertBasketItem);
+
+    const saved = state.basketItems.find((item) => item.id === id);
+    if (saved) {
+      if (checkbox) checkbox.checked = true;
+      if (quantityInput) quantityInput.value = String(saved.quantity);
+      if (noteInput) noteInput.value = saved.note ?? "";
+    }
+  });
+
+  toggleCart?.addEventListener("click", () => {
+    const isClosed = cartPanel?.classList.contains("hidden");
+    cartPanel?.classList.toggle("hidden");
+    toggleCart.setAttribute("aria-expanded", String(isClosed));
+  });
+
+  customerName?.addEventListener("input", render);
+  orderNotes?.addEventListener("input", render);
+
+  if (customerName) customerName.value = state.customerName;
+  if (orderNotes) orderNotes.value = state.notes;
+  render();
+</script>

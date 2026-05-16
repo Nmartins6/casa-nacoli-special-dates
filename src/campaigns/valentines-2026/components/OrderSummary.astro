@@ -1,0 +1,72 @@
+---
+import type { Campaign } from "@shared/types/campaign";
+
+type Props = {
+  campaign: Campaign;
+};
+
+const { campaign } = Astro.props;
+---
+
+<aside
+  id="pedido"
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-[#E1B78F] bg-[#fffaf2]/96 shadow-2xl shadow-[#703D25]/25 backdrop-blur-xl lg:left-auto lg:right-5 lg:bottom-5 lg:w-[420px] lg:rounded-3xl lg:border"
+  data-whatsapp-number={campaign.whatsappNumber}
+  aria-label="Resumo do pedido"
+>
+  <div class="mx-auto max-w-7xl p-4 lg:p-5">
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.16em] text-[#C06445]">Seu pedido</p>
+        <h2 class="text-lg font-black text-[#703D25]">Resumo para WhatsApp</h2>
+      </div>
+      <button
+        id="toggle-cart"
+        class="focus-ring min-h-10 rounded-full border border-[#E1B78F] bg-white px-4 text-sm font-black text-[#703D25] lg:hidden"
+        type="button"
+        aria-expanded="false"
+        aria-controls="cart-panel"
+      >
+        Ver itens <span id="cart-count">(0)</span>
+      </button>
+    </div>
+
+    <div id="cart-panel" class="mt-4 hidden max-h-[72vh] overflow-y-auto pb-2 lg:block">
+      <div class="grid gap-4">
+        <div>
+          <h3 class="text-sm font-black text-[#703D25]">Produtos escolhidos</h3>
+          <div id="cart-products" class="mt-2 grid gap-2 text-sm text-[#6f4a35]">
+            <p class="rounded-xl bg-[#FBEEDE] p-3">Nenhum produto selecionado ainda.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-black text-[#703D25]">Cesta personalizada</h3>
+          <div id="cart-basket" class="mt-2 grid gap-2 text-sm text-[#6f4a35]">
+            <p class="rounded-xl bg-[#FBEEDE] p-3">Nenhum item de cesta selecionado ainda.</p>
+          </div>
+        </div>
+
+        <label class="grid gap-1 text-sm font-bold text-[#703D25]">
+          Meu nome
+          <input id="customer-name" class="focus-ring min-h-11 rounded-xl border border-[#E1B78F] bg-white px-3" type="text" placeholder="Digite seu nome" />
+        </label>
+
+        <label class="grid gap-1 text-sm font-bold text-[#703D25]">
+          Observações gerais
+          <textarea id="order-notes" class="focus-ring min-h-24 resize-y rounded-xl border border-[#E1B78F] bg-white px-3 py-2" placeholder="Conte datas, nomes, frases, ideias de arte ou preferência de retirada/entrega."></textarea>
+        </label>
+
+        <a
+          id="send-whatsapp"
+          class="focus-ring inline-flex min-h-12 items-center justify-center rounded-full bg-[#2F7CB6] px-5 text-center text-sm font-black text-white shadow-lg shadow-[#2F7CB6]/20 transition hover:-translate-y-0.5 hover:bg-[#246898]"
+          href="#"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Enviar pedido pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</aside>
