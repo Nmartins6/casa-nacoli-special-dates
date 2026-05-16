@@ -765,6 +765,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lucide/astro@npm:^1.16.0":
+  version: 1.16.0
+  resolution: "@lucide/astro@npm:1.16.0"
+  peerDependencies:
+    astro: ^4 || ^5 || ^6
+  checksum: 10c0/48288e2e7906cf5d69730eee86932ab9a426d1e274ed64092bfa657b5e99067158456a7f55694bdd0d7ccceba12ece8888e1457336d95ba7cd7750c56b308a7c
+  languageName: node
+  linkType: hard
+
 "@napi-rs/wasm-runtime@npm:^1.1.4":
   version: 1.1.4
   resolution: "@napi-rs/wasm-runtime@npm:1.1.4"
@@ -1598,6 +1607,7 @@ __metadata:
   dependencies:
     "@astrojs/check": "npm:^0.9.5"
     "@astrojs/sitemap": "npm:^3.6.0"
+    "@lucide/astro": "npm:^1.16.0"
     "@tailwindcss/vite": "npm:^4.3.0"
     astro: "npm:^6.3.3"
     tailwindcss: "npm:^4.3.0"
