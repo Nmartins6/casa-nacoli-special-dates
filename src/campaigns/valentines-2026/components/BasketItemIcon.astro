@@ -1,23 +1,19 @@
 ---
 import {
   Beer,
-  Camera,
   Candy,
   Coffee,
   Cookie,
   CupSoda,
   FileText,
   Flame,
-  Gift,
-  GlassWater,
-  Grid2x2,
   Heart,
   Image,
-  Lollipop,
-  Milk,
+  Table,
   Nut,
-  PackageOpen,
+  WavesVertical,
   Wine,
+  Square,
   type IconProps,
 } from "@lucide/astro";
 
@@ -30,11 +26,11 @@ const { itemId } = Astro.props;
 const iconMap: Record<string, (props: IconProps) => unknown> = {
   vinho: Wine,
   cerveja: Beer,
-  chocolate: Lollipop,
+  chocolate: Table,
   bombons: Candy,
   bolacha: Cookie,
   cappuccino: Coffee,
-  geleias: PackageOpen,
+  geleias: WavesVertical,
   "balao-coracao": Heart,
   cookies: Cookie,
   sucos: CupSoda,
@@ -43,18 +39,12 @@ const iconMap: Record<string, (props: IconProps) => unknown> = {
   "caneca-personalizada": Coffee,
   "foto-impressa": Image,
   "impressao-personalizada": FileText,
-  "azulejo-personalizado": Grid2x2,
+  "azulejo-personalizado": Square,
 };
 
-const Icon = iconMap[itemId] ?? Gift;
-const AccentIcon = itemId === "sucos" ? GlassWater : itemId === "foto-impressa" ? Camera : itemId === "cappuccino" ? Milk : null;
+const Icon = iconMap[itemId]
 ---
 
 <span class="relative grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-white/20 bg-[#FBEEDE] text-[#703D25] shadow-sm" aria-hidden="true">
   <Icon class="h-7 w-7" stroke-width={1.8} />
-  {AccentIcon && (
-    <span class="absolute -bottom-1 -right-1 grid h-5 w-5 place-items-center rounded-full border border-[#FBEEDE] bg-[#C06445] text-[#FBEEDE]">
-      <AccentIcon class="h-3 w-3" stroke-width={2} />
-    </span>
-  )}
 </span>
