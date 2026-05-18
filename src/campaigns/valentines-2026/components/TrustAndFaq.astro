@@ -9,20 +9,41 @@ const trustItems = [
 ];
 
 const testimonials = [
-  {
-    name: "Cliente placeholder",
-    text: "A caneca ficou delicada e a cesta veio do jeitinho que eu imaginei.",
-  },
-  {
-    name: "Cliente placeholder",
-    text: "Gostei de poder resolver tudo pelo WhatsApp e ajustar a arte antes de finalizar.",
-  },
+  { stars: 5, name: "Maria Teresa Petry", comment: "Quero agradecer pelo carinho e gentileza no atendimento. Trabalho incrível, muitas encomendas estão por vim🫶🏻" },
+  { stars: 5, name: "Arlete Horst", comment: "Super recomendo!!!!! Pontualidade na entrega combinada, e os produtos maravilhosos, do jeitinho que pedi!!!!" },
+  { stars: 5, name: "Patricia noll", comment: "Atendimento e trabalho impecável." },
+  { stars: 5, name: "Maria Eduarda Vieira", comment: "Foram muito atenciosos e ágeis! O trabalho ficou lindo e do jeitinho que pedi. Obrigada! 🤍" },
+  { stars: 5, name: "Emerson Pacheco", comment: "Ótima qualidade do produto" },
+  { stars: 5, name: "Sadi Martins", comment: "Trabalho top com ótima qualidade e atendimento excelente ! Super indicado !!" },
+  { stars: 5, name: "Gabriel", comment: "Produtos de qualidade." },
+  { stars: 5, name: "Taina Ataya", comment: "Excelente! Do Atendimento a entrega dos produtos, tudo perfeito!" },
+  { stars: 5, name: "William Robalo", comment: "Essa caneca mágica é surreal, simples assim. Surpreende, chama atenção e não passa despercebida. Excelente trabalho, sucesso e parabéns." },
+  { stars: 5, name: "Joanna Pereira", comment: "A Casa Nacoli atendeu uma demanda minha super urgente num momento de muita dor. Com muito cuidado e prestatividade." },
+  { stars: 5, name: "Tatiani Soares Pizio", comment: "Produto superou as expectativas, entrega rápida. Super recomendo!" },
+  { stars: 5, name: "Filipe Pereira", comment: "Pessoas competentes e muito criativas parabéns pelo excelente trabalho! Super indico" },
+  { stars: 5, name: "William Polako", comment: "Top" },
+  { stars: 5, name: "Lilia Maria Caldas Ataya", comment: "Maravilhosa ❤️" },
+  { stars: 5, name: "Nádia Cristine", comment: "Trabalho simplesmente incrível, Impecável nota 10 👏👏👏" },
+  { stars: 5, name: "renata da silva cardoso", comment: "Excelente atendimento, assim como os produtos de alta qualidade. Super recomendo! ❤️❤️" },
+  { stars: 5, name: "Márcio Ataya", comment: "Excelente atendimento, entrega muito rápida, e produtos em uma qualidade impecável!!" },
+  { stars: 5, name: "Erick Ataya", comment: "produtos de ótima qualidade e feitos com muito carinho!!" },
+  { stars: 5, name: "Kanandra Araujo", comment: "Perfeito, recebi atenção, fui ouvida e auxiliada nas minhas duvidas, qualidade do produto e agilidade sem igual. Minha preferida desde o primeiro pedido!!!!" },
+  { stars: 5, name: "Anna Scienza", comment: "Trabalho perfeito 😍😊" },
+  { stars: 5, name: "Larissa Ataya", comment: "Tudo sempre com muito cuidado e capricho, tanto a produção quanto a entrega! Recomendo de olhos fechados!!" },
+  { stars: 5, name: "Yasmin Pereira", comment: "Amo Casa Nacoli, atendimento super rápido e com muito carinho, encomenda ficou pronta rapidinho e a qualidade é maravilhosa!" },
+  { stars: 5, name: "Mariana Pereira", comment: "Sempre tive ótimas experiências e fui muito bem atendida, sempre muito atenciosos com as minhas solicitações e sai muitíssimo satisfeita com todas as encomendas que já fiz." },
+  { stars: 5, name: "Ingrid Mariotto", comment: "Ótimo atendimento, cumpriram prazo estabelecido." },
+  { stars: 5, name: "Rafaela Ataya", comment: "Trabalho impecável, riqueza nos detalhes. Atendimento rápido e com agilidade, entrega eficiente e dentro do prazo combinado." },
+  { stars: 5, name: "Barbara Lange", comment: "Trabalho e atendimento excelentes, muito amor e dedicação em cada pedido!! Super recomendo!!" },
+  { stars: 5, name: "Rebeca Santos", comment: "Trabalho impecável, desde o atendimento até a entrega! Afeto em cada detalhe! Sou fã!" },
+  { stars: 5, name: "Larissa Luzzani", comment: "Trabalho incrível. Detalhes impecáveis, obrigada pelo atendimento!! Tudo perfeito 💛" },
+  { stars: 5, name: "gabriela borges", comment: "Trabalho maravilhoso,super caprichado, amei a experiência,." },
 ];
 
 const faqs = [
   ["Posso escolher a arte?", "Sim! Você pode enviar foto, frase, nome, data ou referência. A Casa Nacoli confirma os detalhes antes da produção."],
   ["Quanto tempo leva para produzir?", "O prazo depende do produto, da quantidade e da agenda da campanha. O tempo certinho é confirmado pelo WhatsApp."],
-  ["Posso montar uma cesta personalizada?", "Pode sim! Você seleciona os itens no site e também pode incuir algo que não apareceu na nossa lista diretamente lá no nosso WhatsApp."],
+  ["Posso montar uma cesta personalizada?", "Pode sim! Você seleciona os itens no site e também pode incluir algo que não apareceu na nossa lista diretamente lá no nosso WhatsApp."],
   ["Como finalizo o pedido?", "Monte seu carrinho, preencha nome e observações, e envie tudo pelo botão de WhatsApp que nós respondemos rapidinho."],
   ["Vocês entregam ou é retirada?", "As opções de entrega ou retirada são combinadas diretamente no atendimento."],
   ["Posso pedir pelo WhatsApp?", "Sim. O WhatsApp é o canal principal para confirmar arte, valores, prazo e forma de entrega."],
@@ -46,21 +67,154 @@ const faqs = [
         </article>
       ))}
     </div>
+  </div>
+</section>
 
-    <div class="mt-10 grid gap-4 md:grid-cols-2">
-      {testimonials.map((testimonial) => (
-        <figure class="rounded-2xl border border-[#E1B78F]/70 bg-[#FBEEDE]/70 p-5">
-          <blockquote class="text-base font-semibold leading-7 text-[#703D25]">
-            “{testimonial.text}”
-          </blockquote>
-          <figcaption class="mt-3 text-sm font-bold text-[#C06445]">
-            {testimonial.name} - depoimento fictício para placeholder
-          </figcaption>
-        </figure>
-      ))}
+<!-- Carrossel de depoimentos -->
+<section class="overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <SectionHeading
+      eyebrow="Depoimentos"
+      title="O que nossos clientes dizem"
+      align="center"
+    />
+
+    <div class="relative mt-10">
+      <!-- Viewport de clipping -->
+      <div id="testimonials-viewport" class="overflow-hidden">
+        <!-- Track deslizante -->
+        <div id="testimonials-track" class="flex gap-4 transition-transform duration-700 ease-in-out will-change-transform">
+          {[...testimonials, ...testimonials].map((t, i) => (
+            <article
+              class="testimonial-card shrink-0 rounded-2xl border border-[#E1B78F]/70 bg-[#FBEEDE]/70 p-5"
+              aria-hidden={i >= testimonials.length ? "true" : "false"}
+            >
+              <!-- Estrelas -->
+              <div class="flex gap-0.5" aria-label={`${t.stars} estrelas`}>
+                {Array.from({ length: t.stars }).map(() => (
+                  <svg class="h-4 w-4 fill-[#F5A728]" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z" />
+                  </svg>
+                ))}
+              </div>
+              <!-- Texto -->
+              <blockquote class="mt-3 text-sm leading-6 text-[#703D25]">
+                "{t.comment}"
+              </blockquote>
+              <!-- Nome -->
+              <figcaption class="mt-3 text-xs font-black text-[#C06445]">
+                {t.name}
+              </figcaption>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Indicadores -->
+      <div id="testimonials-dots" class="mt-6 flex justify-center gap-2" aria-label="Navegação do carrossel">
+        {testimonials.map((_, i) => (
+          <button
+            class="testimonial-dot h-2 w-2 rounded-full bg-[#E1B78F] transition-all duration-300 focus-ring"
+            data-index={i}
+            aria-label={`Ir para depoimento ${i + 1}`}
+          />
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const viewport = document.getElementById("testimonials-viewport") as HTMLElement;
+  const track = document.getElementById("testimonials-track") as HTMLElement;
+  const dots = document.querySelectorAll<HTMLButtonElement>(".testimonial-dot");
+
+  if (track && viewport) {
+    const cards = Array.from(track.querySelectorAll<HTMLElement>(".testimonial-card"));
+    const total = dots.length;
+    const GAP = 16; // gap-4 = 16px
+
+    let current = 0;
+    let timer: ReturnType<typeof setInterval>;
+
+    const getVisible = () => {
+      if (window.innerWidth >= 1024) return 4;
+      if (window.innerWidth >= 640) return 2;
+      return 1;
+    };
+
+    // Calcula e aplica largura real dos cards com base no container
+    const setCardWidths = () => {
+      const containerW = viewport.clientWidth;
+      const visible = getVisible();
+      const cardW = Math.floor((containerW - GAP * (visible - 1)) / visible);
+      cards.forEach((card) => {
+        card.style.width = `${cardW}px`;
+        card.style.minWidth = `${cardW}px`;
+      });
+    };
+
+    const getCardWidth = () => cards[0]?.getBoundingClientRect().width ?? 0;
+
+    const setActive = (index: number) => {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("bg-[#C06445]", i === index);
+        dot.classList.toggle("w-5", i === index);
+        dot.classList.toggle("bg-[#E1B78F]", i !== index);
+        dot.classList.toggle("w-2", i !== index);
+      });
+    };
+
+    const goTo = (index: number) => {
+      current = ((index % total) + total) % total;
+      const offset = current * (getCardWidth() + GAP);
+      track.style.transform = `translateX(-${offset}px)`;
+      setActive(current);
+
+      // Loop silencioso ao voltar ao início
+      if (current === 0) {
+        setTimeout(() => {
+          track.style.transition = "none";
+          track.style.transform = `translateX(0)`;
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            track.style.transition = "";
+          }));
+        }, 700);
+      }
+    };
+
+    const next = () => goTo(current + 1);
+
+    const startTimer = () => {
+      clearInterval(timer);
+      timer = setInterval(next, 3000);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => { goTo(i); startTimer(); });
+    });
+
+    track.addEventListener("mouseenter", () => clearInterval(timer));
+    track.addEventListener("mouseleave", startTimer);
+
+    let touchStartX = 0;
+    track.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener("touchend", (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        goTo(diff > 0 ? current + 1 : current - 1);
+        startTimer();
+      }
+    }, { passive: true });
+
+    window.addEventListener("resize", () => { setCardWidths(); goTo(current); }, { passive: true });
+
+    // Inicializa
+    setCardWidths();
+    setActive(0);
+    startTimer();
+  }
+</script>
 
 <section id="faq" class="px-4 pb-28 pt-6 sm:px-6 lg:px-8 lg:pb-16">
   <div class="mx-auto max-w-4xl">
@@ -71,7 +225,10 @@ const faqs = [
           <summary class="cursor-pointer list-none text-base font-black text-[#703D25]">
             <span class="inline-flex w-full items-center justify-between gap-4">
               {question}
-              <span class="text-xl text-[#C06445] group-open:rotate-45">+</span>
+              <span class="shrink-0 text-xl font-black text-[#C06445]">
+                <span class="group-open:hidden">+</span>
+                <span class="hidden group-open:inline">−</span>
+              </span>
             </span>
           </summary>
           <p class="mt-3 text-sm leading-6 text-[#6f4a35]">{answer}</p>

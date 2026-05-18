@@ -1,19 +1,21 @@
 import type { Product } from "@shared/types/campaign";
 
-const productImage = "/assets/product-placeholder.svg";
+const mugImage = "/assets/ai-placeholders/mugs.png";
+const keepsakeImage = "/assets/ai-placeholders/keepsakes.png";
+const giftBasketImage = "/assets/ai-placeholders/gift-basket.png";
+const printsApparelImage = "/assets/ai-placeholders/prints-apparel.png";
 
 export const products: Product[] = [
   {
-    id: "caneca-personalizada-individual",
-    name: "Caneca personalizada individual",
+    id: "caneca-branca",
+    name: "Caneca branca",
     category: "Canecas",
     description:
-      "Uma caneca com foto, frase ou arte pensada para lembrar o seu amor todos os dias, no café da manhã ou naquele chá no fim da noite.",
+      "Clássica, delicada e versátil. Ideal para uma arte limpa, uma declaração curta ou uma lembrança cheia de significado.",
     price: "sob consulta",
-    image: productImage,
-    imageAlt: "Caneca personalizada artesanal da Casa Nacoli",
-    options: ["Foto", "Frase", "Arte personalizada"],
-    featured: true,
+    image: mugImage,
+    imageAlt: "Caneca branca personalizada",
+    options: ["Arte simples", "Foto", "Frase"],
   },
   {
     id: "caneca-personalizada-casal",
@@ -22,22 +24,12 @@ export const products: Product[] = [
     description:
       "Par de canecas para combinar histórias, datas, apelidos e pequenos detalhes que só o casal entende.",
     price: "sob consulta",
-    image: productImage,
+    image: mugImage,
     imageAlt: "Par de canecas personalizadas para casal",
     options: ["Par romântico", "Arte espelhada", "Nomes e data"],
     featured: true,
   },
-  {
-    id: "caneca-branca",
-    name: "Caneca branca",
-    category: "Canecas",
-    description:
-      "Clássica, delicada e versátil. Ideal para uma arte limpa, uma declaração curta ou uma lembrança cheia de significado.",
-    price: "sob consulta",
-    image: productImage,
-    imageAlt: "Caneca branca personalizada",
-    options: ["Arte simples", "Foto", "Frase"],
-  },
+
   {
     id: "caneca-magica",
     name: "Caneca mágica",
@@ -45,7 +37,7 @@ export const products: Product[] = [
     description:
       "A surpresa aparece com o calor da bebida. Uma escolha charmosa para revelar foto, frase ou pedido especial.",
     price: "sob consulta",
-    image: productImage,
+    image: mugImage,
     imageAlt: "Caneca mágica personalizada",
     options: ["Foto surpresa", "Mensagem surpresa"],
     featured: true,
@@ -57,9 +49,9 @@ export const products: Product[] = [
     description:
       "Um toque de cor para deixar o presente mais alegre, combinando a arte com o estilo de quem vai receber.",
     price: "sob consulta",
-    image: productImage,
+    image: mugImage,
     imageAlt: "Caneca com alça e interior colorido",
-    options: ["Vermelha", "Azul", "Amarela", "Preta"],
+    colorConsulta: true,
   },
   {
     id: "caneca-coracao",
@@ -68,30 +60,30 @@ export const products: Product[] = [
     description:
       "Uma caneca romântica na medida, com alça em formato de coração e personalização feita sob encomenda.",
     price: "sob consulta",
-    image: productImage,
+    image: mugImage,
     imageAlt: "Caneca personalizada com alça de coração",
     options: ["Foto", "Nomes", "Frase curta"],
   },
   {
     id: "azulejo-15x15",
-    name: "Azulejo personalizado 15x15 com suporte",
+    name: "Azulejo personalizado 15x15cm",
     category: "Decoração",
     description:
-      "Uma lembrança para ficar à vista: foto, arte ou frase em azulejo 15x15 com suporte para decorar com afeto.",
+      "Uma lembrança para ficar à vista: foto, arte ou frase em azulejo 15x15cm com suporte para decorar com afeto.",
     price: "sob consulta",
-    image: productImage,
-    imageAlt: "Azulejo personalizado 15x15 com suporte",
+    image: keepsakeImage,
+    imageAlt: "Azulejo personalizado 15x15cm com suporte",
     options: ["Foto", "Colagem", "Mensagem"],
     featured: true,
   },
   {
     id: "ima-mdf-5x5",
-    name: "Imã de geladeira em MDF 5cm x 5cm",
+    name: "Imã de geladeira em MDF 5x5cm",
     category: "Lembranças",
     description:
       "Pequeno no tamanho, grande na memória. Perfeito para eternizar uma foto, uma data ou uma frase carinhosa.",
     price: "sob consulta",
-    image: productImage,
+    image: keepsakeImage,
     imageAlt: "Imã de geladeira em MDF personalizado",
     options: ["Foto", "Logo", "Frase"],
   },
@@ -102,7 +94,7 @@ export const products: Product[] = [
     description:
       "Uma placa personalizada para transformar um momento em peça decorativa, com acabamento artesanal e presença.",
     price: "sob consulta",
-    image: productImage,
+    image: keepsakeImage,
     imageAlt: "Placa MDF sublimada personalizada",
     options: ["Foto", "Mensagem", "Arte decorativa"],
   },
@@ -113,7 +105,7 @@ export const products: Product[] = [
     description:
       "Para montar juntinhos: uma foto especial vira um presente interativo, divertido e cheio de significado.",
     price: "sob consulta",
-    image: productImage,
+    image: printsApparelImage,
     imageAlt: "Quebra-cabeça personalizado com foto",
     options: ["Foto do casal", "Mensagem", "Arte surpresa"],
   },
@@ -124,19 +116,19 @@ export const products: Product[] = [
     description:
       "Um brinde com a cara do casal. O rótulo personalizado deixa o vinho pronto para virar momento especial.",
     price: "sob consulta",
-    image: productImage,
+    image: giftBasketImage,
     imageAlt: "Vinho com rótulo personalizado",
     options: ["Rótulo romântico", "Nomes e data", "Mensagem curta"],
     featured: true,
   },
   {
     id: "chaveiro-mdf-personalizado",
-    name: "Chaveiro MDF personalizado",
+    name: "Chaveiro MDF personalizado 5cm | duas faces",
     category: "Lembranças",
     description:
       "Uma lembrança prática para carregar o seu amor por onde for.",
     price: "sob consulta",
-    image: productImage,
+    image: keepsakeImage,
     imageAlt: "Chaveiro MDF personalizado",
     options: ["Foto", "Nome", "Frase"],
   },
@@ -147,7 +139,7 @@ export const products: Product[] = [
     description:
       "Cartões, bilhetes, artes e detalhes impressos para completar o presente com aquela camada de cuidado.",
     price: "sob consulta",
-    image: productImage,
+    image: printsApparelImage,
     imageAlt: "Impressões personalizadas para presentes",
     options: ["Cartão", "Tag", "Arte impressa"],
   },
@@ -158,7 +150,7 @@ export const products: Product[] = [
     description:
       "Uma camiseta feita para vestir memória: frase interna do casal, foto, ilustração ou arte especial.",
     price: "sob consulta",
-    image: productImage,
+    image: printsApparelImage,
     imageAlt: "Camiseta personalizada",
     options: ["P", "M", "G", "GG"],
   },

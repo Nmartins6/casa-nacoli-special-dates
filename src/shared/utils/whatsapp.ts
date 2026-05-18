@@ -24,16 +24,19 @@ export function formatOrderMessage({
 
   const getBasketNoteLabel = (id: string) => {
     if (["vinho", "cerveja", "bombons", "caneca-personalizada"].includes(id)) return "tipo";
+    if (id === "cappuccino") return "opção";
     if (id === "nutella") return "tamanho";
     return "obs.";
   };
 
   const basketLines = basketItems.length
     ? basketItems.map((item) => {
-        const noteLabel = getBasketNoteLabel(item.id);
-        const note = item.note ? ` - ${noteLabel}: ${item.note}` : "";
-        return `- ${item.quantity}x ${item.name}${note}`;
-      })
+      const noteLabel = getBasketNoteLabel(item.id);
+      const note = item.note ? ` - ${noteLabel}: ${item.note}` : "";
+      const personalizedLabel =
+        item.id === "vinho" && item.personalizedLabel ? " - rótulo personalizado do casal" : "";
+      return `- ${item.quantity}x ${item.name}${note}${personalizedLabel}`;
+    })
     : ["- Nenhum item de cesta selecionado"];
 
   return [

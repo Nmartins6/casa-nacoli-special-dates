@@ -68,9 +68,21 @@
     if (id === "vinho") return "Tipo do vinho";
     if (id === "cerveja") return "Tipo da cerveja";
     if (id === "bombons") return "Tipo dos bombons";
+    if (id === "cappuccino") return "Opção do cappuccino";
     if (id === "nutella") return "Tamanho";
     if (id === "caneca-personalizada") return "Tipo da caneca";
     return "Observação";
+  };
+
+  const getBasketDetails = (item: CartState["basketItems"][number]) => {
+    const details = [];
+    if (item.note) {
+      details.push(`${getBasketDetailLabel(item.id)}: ${item.note}`);
+    }
+    if (item.id === "vinho" && item.personalizedLabel) {
+      details.push("Rótulo personalizado do casal");
+    }
+    return details.join(" • ");
   };
 
   const createLine = ({
@@ -166,10 +178,11 @@
         basketList.append(empty);
       } else {
         state.basketItems.forEach((item) => {
+          const detail = getBasketDetails(item);
           basketList.append(
             createLine({
               label: item.name,
-              detail: item.note ? `${getBasketDetailLabel(item.id)}: ${item.note}` : undefined,
+              detail: detail || undefined,
               quantity: item.quantity,
               onQuantity: (quantity) => {
                 item.quantity = quantity;
@@ -228,6 +241,7 @@
     const checkbox = card.querySelector<HTMLInputElement>(".basket-selected");
     const quantityInput = card.querySelector<HTMLInputElement>(".basket-quantity");
     const noteInput = card.querySelector<HTMLInputElement | HTMLSelectElement>(".basket-note");
+    const personalizedLabelInput = card.querySelector<HTMLInputElement>(".basket-personalized-label");
     const id = card.dataset.basketId;
     const name = card.dataset.basketName;
 
@@ -235,13 +249,15 @@
       if (!id || !name || !checkbox?.checked) return;
       const quantity = normalizeQuantity(quantityInput?.value ?? 1);
       const note = noteInput?.value.trim();
+      const personalizedLabel = Boolean(personalizedLabelInput?.checked);
       const existing = state.basketItems.find((item) => item.id === id);
 
       if (existing) {
         existing.quantity = quantity;
         existing.note = note;
+        existing.personalizedLabel = personalizedLabel;
       } else {
-        state.basketItems.push({ id, name, quantity, note });
+        state.basketItems.push({ id, name, quantity, note, personalizedLabel });
       }
       render();
     };
@@ -259,12 +275,14 @@
     quantityInput?.addEventListener("change", upsertBasketItem);
     noteInput?.addEventListener("input", upsertBasketItem);
     noteInput?.addEventListener("change", upsertBasketItem);
+    personalizedLabelInput?.addEventListener("change", upsertBasketItem);
 
     const saved = state.basketItems.find((item) => item.id === id);
     if (saved) {
       if (checkbox) checkbox.checked = true;
       if (quantityInput) quantityInput.value = String(saved.quantity);
       if (noteInput) noteInput.value = saved.note ?? "";
+      if (personalizedLabelInput) personalizedLabelInput.checked = Boolean(saved.personalizedLabel);
     }
   });
 

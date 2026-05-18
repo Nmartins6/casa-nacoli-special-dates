@@ -13,9 +13,11 @@ const { items } = Astro.props;
 const wineTypes = ["Tinto seco", "Tinto suave", "Branco seco", "Branco suave", "Champanhe"];
 const beerTypes = ["Long neck Heineken", "Long neck Budweiser", "Long neck Corona"];
 const bonbonTypes = ["Chocolate branco", "Chocolate preto", "Misto"];
+const cappuccinoOptions = ["Sachê", "Garrafa 260ml"];
 const nutellaSizes = ["Pequeno", "Médio", "Grande"];
 const mugTypes = ["Caneca branca", "Caneca mágica", "Alça coração", "Alça colorida (consultar cores)"];
 const decorationNoteItems = ["balao-coracao", "vela"];
+const ideaNoteItems = ["impressao-personalizada"];
 const customRequestMessage = formatOrderMessage({
   customerName: "",
   notes:
@@ -29,6 +31,8 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
 <section id="cesta" class="bg-[#703D25] px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-20">
   <div class="mx-auto max-w-7xl">
     <div class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+
+      <!-- Painel lateral sticky -->
       <div class="lg:sticky lg:top-24">
         <SectionHeading
           eyebrow="Monte agora"
@@ -65,85 +69,282 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
         </div>
       </div>
 
-      <div class="grid gap-5 md:grid-cols-2">
+      <!-- Grid de cards -->
+      <div class="grid gap-4 md:grid-cols-2">
         {items.map((item) => (
-          <article class="basket-card min-w-0 rounded-2xl border border-white/15 bg-white/10 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/[0.13]" data-basket-id={item.id} data-basket-name={item.name}>
-            <div class="flex gap-4">
+          <article
+            class="basket-card group relative min-w-0 overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-sm backdrop-blur transition-all duration-300"
+            data-basket-id={item.id}
+            data-basket-name={item.name}
+          >
+            <!-- Cabeçalho sempre visível -->
+            <div class="flex items-center gap-4 p-4">
               <BasketItemIcon itemId={item.id} />
-              <div class="min-w-0">
+              <div class="min-w-0 flex-1">
                 <h3 class="font-black text-white">{item.name}</h3>
-                <p class="mt-1 text-sm leading-5 text-[#FBEEDE]">{item.description}</p>
+                <p class="mt-0.5 text-xs leading-5 text-[#FBEEDE]/80">{item.description}</p>
+              </div>
+
+              <!-- Botão adicionar / remover -->
+              <div class="shrink-0">
+                <!-- Estado: não selecionado -->
+                <label class="basket-add-label focus-ring flex cursor-pointer items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/20">
+                  <input class="basket-selected sr-only" type="checkbox" />
+                  <svg class="basket-icon-add h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                  <svg class="basket-icon-check hidden h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="basket-btn-text">Adicionar</span>
+                </label>
               </div>
             </div>
-            <div class="mt-4 grid gap-3">
-              <label class="flex items-center gap-3 text-sm font-bold text-white">
-                <input class="basket-selected h-5 w-5 accent-[#F5A728]" type="checkbox" />
-                Selecionar item
-              </label>
-              <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                Quantidade
-                <input class="basket-quantity focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="number" min="1" value={item.suggestedQuantity ?? 1} inputmode="numeric" />
-              </label>
-              {item.id === "vinho" ? (
-                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                  Tipo do vinho
-                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
-                    <option value="">Selecione o tipo</option>
-                    {wineTypes.map((type) => (
-                      <option value={type}>{type}</option>
-                    ))}
-                  </select>
+
+            <!-- Painel de opções (oculto por padrão, revelado ao selecionar) -->
+            <div class="basket-options max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="grid gap-3 border-t border-white/15 bg-white/5 px-4 pb-4 pt-3">
+
+                <!-- Quantidade -->
+                <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                  Quantidade
+                  <div class="flex items-center gap-2">
+                    <button
+                      type="button"
+                      class="basket-qty-dec focus-ring flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition hover:bg-white/20"
+                      aria-label="Diminuir quantidade"
+                    >
+                      <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4"/></svg>
+                    </button>
+                    <input
+                      class="basket-quantity focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-center text-sm font-black text-[#703D25]"
+                      type="number"
+                      min="1"
+                      value={item.suggestedQuantity ?? 1}
+                      inputmode="numeric"
+                    />
+                    <button
+                      type="button"
+                      class="basket-qty-inc focus-ring flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition hover:bg-white/20"
+                      aria-label="Aumentar quantidade"
+                    >
+                      <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                  </div>
                 </label>
-              ) : item.id === "cerveja" ? (
-                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                  Tipo da cerveja
-                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
-                    <option value="">Selecione o tipo</option>
-                    {beerTypes.map((type) => (
-                      <option value={type}>{type}</option>
-                    ))}
-                  </select>
-                </label>
-              ) : item.id === "bombons" ? (
-                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                  Tipo dos bombons
-                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
-                    <option value="">Selecione o tipo</option>
-                    {bonbonTypes.map((type) => (
-                      <option value={type}>{type}</option>
-                    ))}
-                  </select>
-                </label>
-              ) : item.id === "nutella" ? (
-                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                  Tamanho
-                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
-                    <option value="">Selecione o tamanho</option>
-                    {nutellaSizes.map((size) => (
-                      <option value={size}>{size}</option>
-                    ))}
-                  </select>
-                </label>
-              ) : item.id === "caneca-personalizada" ? (
-                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                  Tipo da caneca
-                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
-                    <option value="">Selecione o tipo</option>
-                    {mugTypes.map((type) => (
-                      <option value={type}>{type}</option>
-                    ))}
-                  </select>
-                </label>
-              ) : (
-                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                  Observação
-                  <input class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="text" placeholder={decorationNoteItems.includes(item.id) ? "Sugestão de decoração" : "Ex.: sabor, marca, preferência"} />
-                </label>
-              )}
+
+                <!-- Opções específicas por item -->
+                {item.id === "vinho" ? (
+                  <div class="grid gap-3">
+                    <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                      Tipo do vinho
+                      <select class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]">
+                        <option value="">Selecione o tipo</option>
+                        {wineTypes.map((type) => (
+                          <option value={type}>{type}</option>
+                        ))}
+                      </select>
+                    </label>
+                    <!-- Toggle rótulo personalizado -->
+                    <label class="basket-toggle-label flex cursor-pointer items-center justify-between rounded-xl border border-white/20 bg-white/10 px-3 py-2.5">
+                      <div>
+                        <p class="text-xs font-black text-white">Rótulo personalizado do casal</p>
+                        <p class="text-[10px] text-[#FBEEDE]/70">Arte com nomes, foto ou frase especial</p>
+                      </div>
+                      <span class="relative ml-3 shrink-0">
+                        <input class="basket-personalized-label sr-only" type="checkbox" />
+                        <span class="basket-toggle-track block h-5 w-9 rounded-full border border-white/30 bg-white/20 transition-colors duration-200"></span>
+                        <span class="basket-toggle-thumb absolute left-0.5 top-0.5 block h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200"></span>
+                      </span>
+                    </label>
+                  </div>
+                ) : item.id === "cerveja" ? (
+                  <div class="grid gap-3">
+                    <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                      Tipo da cerveja
+                      <select class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]">
+                        <option value="">Selecione o tipo</option>
+                        {beerTypes.map((type) => (
+                          <option value={type}>{type}</option>
+                        ))}
+                      </select>
+                    </label>
+                    <label class="basket-toggle-label flex cursor-pointer items-center justify-between rounded-xl border border-white/20 bg-white/10 px-3 py-2.5">
+                      <div>
+                        <p class="text-xs font-black text-white">Rótulo personalizado</p>
+                        <p class="text-[10px] text-[#FBEEDE]/70">Arte com nomes, foto ou frase especial</p>
+                      </div>
+                      <span class="relative ml-3 shrink-0">
+                        <input class="basket-personalized-label sr-only" type="checkbox" />
+                        <span class="basket-toggle-track block h-5 w-9 rounded-full border border-white/30 bg-white/20 transition-colors duration-200"></span>
+                        <span class="basket-toggle-thumb absolute left-0.5 top-0.5 block h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200"></span>
+                      </span>
+                    </label>
+                  </div>
+                ) : item.id === "bombons" ? (
+                  <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                    Tipo dos bombons
+                    <select class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]">
+                      <option value="">Selecione o tipo</option>
+                      {bonbonTypes.map((type) => (
+                        <option value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </label>
+                ) : item.id === "cappuccino" ? (
+                  <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                    Opção do cappuccino
+                    <select class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]">
+                      <option value="">Selecione a opção</option>
+                      {cappuccinoOptions.map((option) => (
+                        <option value={option}>{option}</option>
+                      ))}
+                    </select>
+                  </label>
+                ) : item.id === "nutella" ? (
+                  <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                    Tamanho
+                    <select class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]">
+                      <option value="">Selecione o tamanho</option>
+                      {nutellaSizes.map((size) => (
+                        <option value={size}>{size}</option>
+                      ))}
+                    </select>
+                  </label>
+                ) : item.id === "caneca-personalizada" ? (
+                  <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                    Tipo da caneca
+                    <select class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]">
+                      <option value="">Selecione o tipo</option>
+                      {mugTypes.map((type) => (
+                        <option value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </label>
+                ) : item.id === "geleias" || item.id === "sucos" ? (
+                  <div class="grid gap-3">
+                    <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                      Observação
+                      <input
+                        class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]"
+                        type="text"
+                        placeholder="Ex.: sabor, marca, preferência"
+                      />
+                    </label>
+                    <label class="basket-toggle-label flex cursor-pointer items-center justify-between rounded-xl border border-white/20 bg-white/10 px-3 py-2.5">
+                      <div>
+                        <p class="text-xs font-black text-white">Rótulo personalizado</p>
+                        <p class="text-[10px] text-[#FBEEDE]/70">Arte com nomes, foto ou frase especial</p>
+                      </div>
+                      <span class="relative ml-3 shrink-0">
+                        <input class="basket-personalized-label sr-only" type="checkbox" />
+                        <span class="basket-toggle-track block h-5 w-9 rounded-full border border-white/30 bg-white/20 transition-colors duration-200"></span>
+                        <span class="basket-toggle-thumb absolute left-0.5 top-0.5 block h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200"></span>
+                      </span>
+                    </label>
+                  </div>
+                ) : (
+                  <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
+                    Observação
+                    <input
+                      class="basket-note focus-ring min-h-9 w-full rounded-xl border border-white/20 bg-white px-3 text-sm text-[#703D25]"
+                      type="text"
+                      placeholder={
+                        decorationNoteItems.includes(item.id)
+                          ? "Sugestão de decoração"
+                          : ideaNoteItems.includes(item.id)
+                            ? "Fale mais sobre sua ideia"
+                            : "Ex.: sabor, marca, preferência"
+                      }
+                    />
+                  </label>
+                )}
+
+              </div>
             </div>
+
+            <!-- Borda de seleção (aparece ao selecionar) -->
+            <span class="basket-selected-ring pointer-events-none absolute inset-0 rounded-2xl border-2 border-[#F5A728] opacity-0 transition-opacity duration-300" aria-hidden="true"></span>
           </article>
         ))}
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".basket-card").forEach((card) => {
+    const checkbox = card.querySelector<HTMLInputElement>(".basket-selected");
+    const options = card.querySelector<HTMLElement>(".basket-options");
+    const ring = card.querySelector<HTMLElement>(".basket-selected-ring");
+    const btnText = card.querySelector<HTMLElement>(".basket-btn-text");
+    const iconAdd = card.querySelector<HTMLElement>(".basket-icon-add");
+    const iconCheck = card.querySelector<HTMLElement>(".basket-icon-check");
+    const addLabel = card.querySelector<HTMLElement>(".basket-add-label");
+    const qtyDec = card.querySelector<HTMLButtonElement>(".basket-qty-dec");
+    const qtyInc = card.querySelector<HTMLButtonElement>(".basket-qty-inc");
+    const qtyInput = card.querySelector<HTMLInputElement>(".basket-quantity");
+    const toggleTrack = card.querySelector<HTMLElement>(".basket-toggle-track");
+    const toggleThumb = card.querySelector<HTMLElement>(".basket-toggle-thumb");
+    const personalizedLabel = card.querySelector<HTMLInputElement>(".basket-personalized-label");
+
+    const setSelected = (selected: boolean) => {
+      // Expand/collapse options panel
+      if (options) {
+        options.style.maxHeight = selected ? options.scrollHeight + 300 + "px" : "0";
+      }
+      // Ring highlight
+      ring?.classList.toggle("opacity-0", !selected);
+      ring?.classList.toggle("opacity-100", selected);
+      // Button state
+      if (btnText) btnText.textContent = selected ? "Adicionado" : "Adicionar";
+      iconAdd?.classList.toggle("hidden", selected);
+      iconCheck?.classList.toggle("hidden", !selected);
+      if (addLabel) {
+        addLabel.classList.toggle("bg-[#F5A728]/20", selected);
+        addLabel.classList.toggle("border-[#F5A728]/60", selected);
+        addLabel.classList.toggle("text-[#F5A728]", selected);
+        addLabel.classList.toggle("bg-white/10", !selected);
+        addLabel.classList.toggle("border-white/30", !selected);
+        addLabel.classList.toggle("text-white", !selected);
+      }
+    };
+
+    checkbox?.addEventListener("change", () => {
+      setSelected(checkbox.checked);
+    });
+
+    // +/- quantity buttons
+    qtyDec?.addEventListener("click", () => {
+      if (!qtyInput) return;
+      const val = Math.max(1, parseInt(qtyInput.value) - 1);
+      qtyInput.value = String(val);
+      qtyInput.dispatchEvent(new Event("change"));
+    });
+    qtyInc?.addEventListener("click", () => {
+      if (!qtyInput) return;
+      const val = parseInt(qtyInput.value) + 1;
+      qtyInput.value = String(val);
+      qtyInput.dispatchEvent(new Event("change"));
+    });
+
+    // Toggle pill for personalized label
+    personalizedLabel?.addEventListener("change", () => {
+      const on = personalizedLabel.checked;
+      toggleTrack?.classList.toggle("bg-[#F5A728]", on);
+      toggleTrack?.classList.toggle("bg-white/20", !on);
+      toggleThumb?.style.setProperty("transform", on ? "translateX(16px)" : "translateX(0)");
+    });
+
+    // Restore state if already saved
+    if (checkbox?.checked) {
+      setSelected(true);
+      // restore toggle
+      if (personalizedLabel?.checked) {
+        toggleTrack?.classList.add("bg-[#F5A728]");
+        toggleTrack?.classList.remove("bg-white/20");
+        toggleThumb?.style.setProperty("transform", "translateX(16px)");
+      }
+    }
+  });
+</script>

@@ -9,6 +9,7 @@ export type Product = {
   image: string;
   imageAlt: string;
   options?: string[];
+  colorConsulta?: boolean;
   featured?: boolean;
 };
 
@@ -49,4 +50,5 @@ export type CartBasketItem = {
   name: string;
   quantity: number;
   note?: string;
+  personalizedLabel?: boolean;
 };

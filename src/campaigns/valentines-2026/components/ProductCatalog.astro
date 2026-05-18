@@ -57,14 +57,7 @@ const categoryAnchors = categories.map((category) => ({
             </p>
 
             <div class="mt-4 grid gap-3">
-              {product.options?.length ? (
-                <label class="grid gap-1 text-sm font-bold text-[#703D25]">
-                  Opção
-                  <select class="product-option focus-ring min-h-11 rounded-xl border border-[#E1B78F] bg-white px-3 text-sm">
-                    {product.options.map((option) => <option value={option}>{option}</option>)}
-                  </select>
-                </label>
-              ) : null}
+
 
               <label class="grid gap-1 text-sm font-bold text-[#703D25]">
                 Quantidade
