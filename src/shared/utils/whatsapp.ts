@@ -22,9 +22,16 @@ export function formatOrderMessage({
       })
     : ["- Nenhum produto selecionado"];
 
+  const getBasketNoteLabel = (id: string) => {
+    if (["vinho", "cerveja", "bombons", "caneca-personalizada"].includes(id)) return "tipo";
+    if (id === "nutella") return "tamanho";
+    return "obs.";
+  };
+
   const basketLines = basketItems.length
     ? basketItems.map((item) => {
-        const note = item.note ? ` - obs.: ${item.note}` : "";
+        const noteLabel = getBasketNoteLabel(item.id);
+        const note = item.note ? ` - ${noteLabel}: ${item.note}` : "";
         return `- ${item.quantity}x ${item.name}${note}`;
       })
     : ["- Nenhum item de cesta selecionado"];

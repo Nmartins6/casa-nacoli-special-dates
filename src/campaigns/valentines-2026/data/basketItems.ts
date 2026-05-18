@@ -29,19 +29,11 @@ export const basketItems: BasketItem[] = [
   },
   {
     id: "bombons",
-    name: "Bombons",
+    name: "Bombons (unitário)",
     description: "Um mimo delicado para deixar a cesta mais doce e afetiva.",
     image: basketImage,
     imageAlt: "Bombons para cesta personalizada",
     suggestedQuantity: 4,
-  },
-  {
-    id: "guloseimas",
-    name: "Guloseimas",
-    description: "Detalhes gostosos para deixar a cesta mais completa.",
-    image: basketImage,
-    imageAlt: "Guloseimas para cesta personalizada",
-    suggestedQuantity: 1,
   },
   {
     id: "cappuccino",
@@ -108,27 +100,11 @@ export const basketItems: BasketItem[] = [
     suggestedQuantity: 1,
   },
   {
-    id: "foto-impressa",
-    name: "Foto impressa",
-    description: "Um detalhe simples e bonito para trazer memória e deixar o presente mais pessoal.",
-    image: basketImage,
-    imageAlt: "Foto impressa para cesta personalizada",
-    suggestedQuantity: 1,
-  },
-  {
     id: "impressao-personalizada",
     name: "Impressão personalizada",
     description: "Cartão, bilhete, tag ou arte impressa para acompanhar a surpresa.",
     image: basketImage,
     imageAlt: "Impressão personalizada para cesta",
-    suggestedQuantity: 1,
-  },
-  {
-    id: "azulejo-personalizado",
-    name: "Azulejo personalizado",
-    description: "Uma lembrança com foto ou frase para transformar a cesta em presente para eternizar.",
-    image: basketImage,
-    imageAlt: "Azulejo personalizado para cesta",
     suggestedQuantity: 1,
   },
 ];

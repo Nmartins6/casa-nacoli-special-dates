@@ -19,9 +19,14 @@ const whatsappUrl = createWhatsAppLink(campaign.whatsappNumber, quickMessage);
 <header class="sticky top-0 z-40 border-b border-[#E1B78F]/45 bg-[#FBEEDE]/92 backdrop-blur-xl">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
     <a href="#inicio" class="focus-ring flex min-w-0 items-center gap-3 rounded-md" aria-label="Casa Nacoli">
-      <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#703D25] text-lg font-black text-[#FBEEDE]">
-        CN
-      </span>
+      <img
+        src="/assets/logo.webp"
+        alt=""
+        class="h-11 w-11 shrink-0 rounded-full object-cover shadow-sm ring-1 ring-[#E1B78F]/70"
+        width="44"
+        height="44"
+        loading="eager"
+      />
       <span class="leading-tight">
         <strong class="block text-base font-black text-[#703D25]">Casa Nacoli</strong>
         <span class="hidden text-xs font-semibold text-[#8b6147] sm:block">{campaign.concept}</span>

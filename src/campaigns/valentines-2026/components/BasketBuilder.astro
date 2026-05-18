@@ -10,6 +10,12 @@ type Props = {
 };
 
 const { items } = Astro.props;
+const wineTypes = ["Tinto seco", "Tinto suave", "Branco seco", "Branco suave", "Champanhe"];
+const beerTypes = ["Long neck Heineken", "Long neck Budweiser", "Long neck Corona"];
+const bonbonTypes = ["Chocolate branco", "Chocolate preto", "Misto"];
+const nutellaSizes = ["Pequeno", "Médio", "Grande"];
+const mugTypes = ["Caneca branca", "Caneca mágica", "Alça coração", "Alça colorida (consultar cores)"];
+const decorationNoteItems = ["balao-coracao", "vela"];
 const customRequestMessage = formatOrderMessage({
   customerName: "",
   notes:
@@ -78,10 +84,62 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
                 Quantidade
                 <input class="basket-quantity focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="number" min="1" value={item.suggestedQuantity ?? 1} inputmode="numeric" />
               </label>
-              <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
-                Observação
-                <input class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="text" placeholder="Ex.: sabor, marca, preferência" />
-              </label>
+              {item.id === "vinho" ? (
+                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
+                  Tipo do vinho
+                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
+                    <option value="">Selecione o tipo</option>
+                    {wineTypes.map((type) => (
+                      <option value={type}>{type}</option>
+                    ))}
+                  </select>
+                </label>
+              ) : item.id === "cerveja" ? (
+                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
+                  Tipo da cerveja
+                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
+                    <option value="">Selecione o tipo</option>
+                    {beerTypes.map((type) => (
+                      <option value={type}>{type}</option>
+                    ))}
+                  </select>
+                </label>
+              ) : item.id === "bombons" ? (
+                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
+                  Tipo dos bombons
+                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
+                    <option value="">Selecione o tipo</option>
+                    {bonbonTypes.map((type) => (
+                      <option value={type}>{type}</option>
+                    ))}
+                  </select>
+                </label>
+              ) : item.id === "nutella" ? (
+                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
+                  Tamanho
+                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
+                    <option value="">Selecione o tamanho</option>
+                    {nutellaSizes.map((size) => (
+                      <option value={size}>{size}</option>
+                    ))}
+                  </select>
+                </label>
+              ) : item.id === "caneca-personalizada" ? (
+                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
+                  Tipo da caneca
+                  <select class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]">
+                    <option value="">Selecione o tipo</option>
+                    {mugTypes.map((type) => (
+                      <option value={type}>{type}</option>
+                    ))}
+                  </select>
+                </label>
+              ) : (
+                <label class="grid min-w-0 gap-1 text-sm font-bold text-[#FBEEDE]">
+                  Observação
+                  <input class="basket-note focus-ring min-h-11 w-full min-w-0 rounded-xl border border-white/20 bg-white px-3 text-[#703D25]" type="text" placeholder={decorationNoteItems.includes(item.id) ? "Sugestão de decoração" : "Ex.: sabor, marca, preferência"} />
+                </label>
+              )}
             </div>
           </article>
         ))}

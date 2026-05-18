@@ -64,6 +64,15 @@
     render();
   };
 
+  const getBasketDetailLabel = (id: string) => {
+    if (id === "vinho") return "Tipo do vinho";
+    if (id === "cerveja") return "Tipo da cerveja";
+    if (id === "bombons") return "Tipo dos bombons";
+    if (id === "nutella") return "Tamanho";
+    if (id === "caneca-personalizada") return "Tipo da caneca";
+    return "Observação";
+  };
+
   const createLine = ({
     label,
     detail,
@@ -160,7 +169,7 @@
           basketList.append(
             createLine({
               label: item.name,
-              detail: item.note ? `Observação: ${item.note}` : undefined,
+              detail: item.note ? `${getBasketDetailLabel(item.id)}: ${item.note}` : undefined,
               quantity: item.quantity,
               onQuantity: (quantity) => {
                 item.quantity = quantity;
@@ -218,7 +227,7 @@
   document.querySelectorAll<HTMLElement>(".basket-card").forEach((card) => {
     const checkbox = card.querySelector<HTMLInputElement>(".basket-selected");
     const quantityInput = card.querySelector<HTMLInputElement>(".basket-quantity");
-    const noteInput = card.querySelector<HTMLInputElement>(".basket-note");
+    const noteInput = card.querySelector<HTMLInputElement | HTMLSelectElement>(".basket-note");
     const id = card.dataset.basketId;
     const name = card.dataset.basketName;
 
@@ -249,6 +258,7 @@
 
     quantityInput?.addEventListener("change", upsertBasketItem);
     noteInput?.addEventListener("input", upsertBasketItem);
+    noteInput?.addEventListener("change", upsertBasketItem);
 
     const saved = state.basketItems.find((item) => item.id === id);
     if (saved) {
