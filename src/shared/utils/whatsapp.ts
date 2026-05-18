@@ -33,7 +33,7 @@ export function formatOrderMessage({
       const noteLabel = getBasketNoteLabel(item.id);
       const note = item.note ? ` - ${noteLabel}: ${item.note}` : "";
       const personalizedLabel =
-        item.id === "vinho" && item.personalizedLabel ? " - rótulo personalizado do casal" : "";
+        item.personalizedLabel ? " - rótulo personalizado" : "";
       return `- ${item.quantity}x ${item.name}${note}${personalizedLabel}`;
     })
     : ["- Nenhum item de cesta selecionado"];
