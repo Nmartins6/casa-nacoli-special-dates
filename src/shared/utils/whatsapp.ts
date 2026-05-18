@@ -17,8 +17,7 @@ export function formatOrderMessage({
 }: OrderMessageInput) {
   const productLines = products.length
     ? products.map((item) => {
-        const option = item.option ? ` (${item.option})` : "";
-        return `- ${item.quantity}x ${item.name}${option}`;
+        return `- ${item.quantity}x ${item.name}`;
       })
     : ["- Nenhum produto selecionado"];
 

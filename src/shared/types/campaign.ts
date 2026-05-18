@@ -8,7 +8,6 @@ export type Product = {
   price?: Price;
   image: string;
   imageAlt: string;
-  options?: string[];
   colorConsulta?: boolean;
   featured?: boolean;
 };
@@ -42,7 +41,6 @@ export type CartProductItem = {
   id: string;
   name: string;
   quantity: number;
-  option?: string;
 };
 
 export type CartBasketItem = {

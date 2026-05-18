@@ -52,8 +52,8 @@
     button.classList.toggle("opacity-100", isEnabled);
   };
 
-  const removeProduct = (id: string, option?: string) => {
-    state.products = state.products.filter((item) => !(item.id === id && item.option === option));
+  const removeProduct = (id: string) => {
+    state.products = state.products.filter((item) => item.id !== id);
     render();
   };
 
@@ -156,13 +156,13 @@
           productList.append(
             createLine({
               label: item.name,
-              detail: item.option ? `Opção: ${item.option}` : undefined,
+              detail: undefined,
               quantity: item.quantity,
               onQuantity: (quantity) => {
                 item.quantity = quantity;
                 render();
               },
-              onRemove: () => removeProduct(item.id, item.option),
+              onRemove: () => removeProduct(item.id),
             }),
           );
         });
@@ -222,14 +222,13 @@
       const name = card.dataset.productName;
       if (!id || !name) return;
 
-      const option = card.querySelector<HTMLSelectElement>(".product-option")?.value;
       const quantity = normalizeQuantity(card.querySelector<HTMLInputElement>(".product-quantity")?.value ?? 1);
-      const existing = state.products.find((item) => item.id === id && item.option === option);
+      const existing = state.products.find((item) => item.id === id);
 
       if (existing) {
         existing.quantity += quantity;
       } else {
-        state.products.push({ id, name, option, quantity });
+        state.products.push({ id, name, quantity });
       }
 
       setCartOpen(true);

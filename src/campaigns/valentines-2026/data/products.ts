@@ -1,9 +1,5 @@
 import type { Product } from "@shared/types/campaign";
 
-const mugImage = "/assets/ai-placeholders/mugs.png";
-const keepsakeImage = "/assets/ai-placeholders/keepsakes.png";
-const giftBasketImage = "/assets/ai-placeholders/gift-basket.png";
-const printsApparelImage = "/assets/ai-placeholders/prints-apparel.png";
 
 export const products: Product[] = [
   {
@@ -13,9 +9,8 @@ export const products: Product[] = [
     description:
       "Clássica, delicada e versátil. Ideal para uma arte limpa, uma declaração curta ou uma lembrança cheia de significado.",
     price: "sob consulta",
-    image: mugImage,
+    image: "/assets/valentines-2026/products/caneca-branca.svg",
     imageAlt: "Caneca branca personalizada",
-    options: ["Arte simples", "Foto", "Frase"],
   },
   {
     id: "caneca-personalizada-casal",
@@ -24,9 +19,8 @@ export const products: Product[] = [
     description:
       "Par de canecas para combinar histórias, datas, apelidos e pequenos detalhes que só o casal entende.",
     price: "sob consulta",
-    image: mugImage,
+    image: "/assets/valentines-2026/products/caneca-personalizada-casal.svg",
     imageAlt: "Par de canecas personalizadas para casal",
-    options: ["Par romântico", "Arte espelhada", "Nomes e data"],
     featured: true,
   },
 
@@ -37,9 +31,8 @@ export const products: Product[] = [
     description:
       "A surpresa aparece com o calor da bebida. Uma escolha charmosa para revelar foto, frase ou pedido especial.",
     price: "sob consulta",
-    image: mugImage,
+    image: "/assets/valentines-2026/products/caneca-magica.svg",
     imageAlt: "Caneca mágica personalizada",
-    options: ["Foto surpresa", "Mensagem surpresa"],
     featured: true,
   },
   {
@@ -49,7 +42,7 @@ export const products: Product[] = [
     description:
       "Um toque de cor para deixar o presente mais alegre, combinando a arte com o estilo de quem vai receber.",
     price: "sob consulta",
-    image: mugImage,
+    image: "/assets/valentines-2026/products/caneca-colorida.svg",
     imageAlt: "Caneca com alça e interior colorido",
     colorConsulta: true,
   },
@@ -60,9 +53,8 @@ export const products: Product[] = [
     description:
       "Uma caneca romântica na medida, com alça em formato de coração e personalização feita sob encomenda.",
     price: "sob consulta",
-    image: mugImage,
+    image: "/assets/valentines-2026/products/caneca-coracao.svg",
     imageAlt: "Caneca personalizada com alça de coração",
-    options: ["Foto", "Nomes", "Frase curta"],
   },
   {
     id: "azulejo-15x15",
@@ -71,9 +63,8 @@ export const products: Product[] = [
     description:
       "Uma lembrança para ficar à vista: foto, arte ou frase em azulejo 15x15cm com suporte para decorar com afeto.",
     price: "sob consulta",
-    image: keepsakeImage,
+    image: "/assets/valentines-2026/products/azulejo-15x15.svg",
     imageAlt: "Azulejo personalizado 15x15cm com suporte",
-    options: ["Foto", "Colagem", "Mensagem"],
     featured: true,
   },
   {
@@ -83,9 +74,8 @@ export const products: Product[] = [
     description:
       "Pequeno no tamanho, grande na memória. Perfeito para eternizar uma foto, uma data ou uma frase carinhosa.",
     price: "sob consulta",
-    image: keepsakeImage,
+    image: "/assets/valentines-2026/products/ima-mdf-5x5.svg",
     imageAlt: "Imã de geladeira em MDF personalizado",
-    options: ["Foto", "Logo", "Frase"],
   },
   {
     id: "quadro-mdf-sublimado",
@@ -94,9 +84,8 @@ export const products: Product[] = [
     description:
       "Uma placa personalizada para transformar um momento em peça decorativa, com acabamento artesanal e presença.",
     price: "sob consulta",
-    image: keepsakeImage,
+    image: "/assets/valentines-2026/products/quadro-mdf-sublimado.svg",
     imageAlt: "Placa MDF sublimada personalizada",
-    options: ["Foto", "Mensagem", "Arte decorativa"],
   },
   {
     id: "quebra-cabeca-personalizado",
@@ -105,9 +94,8 @@ export const products: Product[] = [
     description:
       "Para montar juntinhos: uma foto especial vira um presente interativo, divertido e cheio de significado.",
     price: "sob consulta",
-    image: printsApparelImage,
+    image: "/assets/valentines-2026/products/quebra-cabeca-personalizado.svg",
     imageAlt: "Quebra-cabeça personalizado com foto",
-    options: ["Foto do casal", "Mensagem", "Arte surpresa"],
   },
   {
     id: "vinho-rotulo-personalizado",
@@ -116,9 +104,8 @@ export const products: Product[] = [
     description:
       "Um brinde com a cara do casal. O rótulo personalizado deixa o vinho pronto para virar momento especial.",
     price: "sob consulta",
-    image: giftBasketImage,
+    image: "/assets/valentines-2026/products/vinho-rotulo-personalizado.svg",
     imageAlt: "Vinho com rótulo personalizado",
-    options: ["Rótulo romântico", "Nomes e data", "Mensagem curta"],
     featured: true,
   },
   {
@@ -128,9 +115,8 @@ export const products: Product[] = [
     description:
       "Uma lembrança prática para carregar o seu amor por onde for.",
     price: "sob consulta",
-    image: keepsakeImage,
+    image: "/assets/valentines-2026/products/chaveiro-mdf-personalizado.svg",
     imageAlt: "Chaveiro MDF personalizado",
-    options: ["Foto", "Nome", "Frase"],
   },
   {
     id: "impressoes-personalizadas",
@@ -139,9 +125,8 @@ export const products: Product[] = [
     description:
       "Cartões, bilhetes, artes e detalhes impressos para completar o presente com aquela camada de cuidado.",
     price: "sob consulta",
-    image: printsApparelImage,
+    image: "/assets/valentines-2026/products/impressoes-personalizadas.svg",
     imageAlt: "Impressões personalizadas para presentes",
-    options: ["Cartão", "Tag", "Arte impressa"],
   },
   {
     id: "camiseta-personalizada",
@@ -150,8 +135,7 @@ export const products: Product[] = [
     description:
       "Uma camiseta feita para vestir memória: frase interna do casal, foto, ilustração ou arte especial.",
     price: "sob consulta",
-    image: printsApparelImage,
+    image: "/assets/valentines-2026/products/camiseta-personalizada.svg",
     imageAlt: "Camiseta personalizada",
-    options: ["P", "M", "G", "GG"],
   },
 ];

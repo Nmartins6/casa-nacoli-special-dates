@@ -35,17 +35,67 @@ const whatsappUrl = createWhatsAppLink(campaign.whatsappNumber, quickMessage);
 
     <nav class="hidden items-center gap-6 text-sm font-bold text-[#703D25] md:flex" aria-label="Principal">
       <a class="focus-ring rounded-md hover:text-[#C06445]" href="#cesta">Cesta personalizada</a>
-      <a class="focus-ring rounded-md hover:text-[#C06445]" href="#produtos">Complementos</a>
+      <a class="focus-ring rounded-md hover:text-[#C06445]" href="#produtos">Personalizados</a>
       <a class="focus-ring rounded-md hover:text-[#C06445]" href="#faq">Dúvidas</a>
     </nav>
 
-    <a
-      class="focus-ring inline-flex min-h-11 items-center justify-center rounded-full bg-[#2F7CB6] px-4 text-sm font-black text-white shadow-lg shadow-[#2F7CB6]/20 transition hover:-translate-y-0.5 hover:bg-[#246898]"
-      href={whatsappUrl}
-      target="_blank"
-      rel="noreferrer"
-    >
-      Fale conosco
-    </a>
+    <div class="flex items-center gap-2">
+      <a
+        class="focus-ring inline-flex min-h-11 items-center justify-center rounded-full bg-[#2F7CB6] px-4 text-sm font-black text-white shadow-lg shadow-[#2F7CB6]/20 transition hover:-translate-y-0.5 hover:bg-[#246898]"
+        href={whatsappUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Fale conosco
+      </a>
+
+      <button
+        id="mobile-menu-btn"
+        class="focus-ring flex h-11 w-11 items-center justify-center rounded-full text-[#703D25] transition hover:bg-[#E1B78F]/30 md:hidden"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path id="icon-menu" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          <path id="icon-close" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" class="hidden" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menu Mobile -->
+  <div
+    id="mobile-menu"
+    class="absolute inset-x-0 top-full hidden flex-col border-b border-[#E1B78F]/45 bg-[#FBEEDE] px-4 py-4 text-center shadow-xl md:hidden"
+  >
+    <nav class="flex flex-col gap-4 font-bold text-[#703D25]">
+      <a class="mobile-menu-link focus-ring rounded-md py-2 text-lg hover:text-[#C06445]" href="#cesta">Cesta personalizada</a>
+      <a class="mobile-menu-link focus-ring rounded-md py-2 text-lg hover:text-[#C06445]" href="#produtos">Personalizados</a>
+      <a class="mobile-menu-link focus-ring rounded-md py-2 text-lg hover:text-[#C06445]" href="#faq">Dúvidas</a>
+    </nav>
   </div>
 </header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const iconMenu = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+  const links = document.querySelectorAll(".mobile-menu-link");
+
+  if (btn && menu && iconMenu && iconClose) {
+    const toggleMenu = () => {
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!isExpanded));
+      menu.classList.toggle("hidden");
+      iconMenu.classList.toggle("hidden");
+      iconClose.classList.toggle("hidden");
+    };
+
+    btn.addEventListener("click", toggleMenu);
+
+    links.forEach((link) => {
+      link.addEventListener("click", toggleMenu);
+    });
+  }
+</script>
