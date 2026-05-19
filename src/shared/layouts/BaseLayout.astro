@@ -85,12 +85,43 @@ const jsonLd = {
         revealElements.forEach((el) => observer.observe(el));
       };
 
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initReveal);
-      } else {
+      const initWhatsAppFooterObserver = () => {
+        const footer = document.querySelector("footer");
+        const waButton = document.querySelector(".whatsapp-float");
+        if (!footer || !waButton) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (window.innerWidth < 1024) {
+              if (entry.isIntersecting) {
+                waButton.classList.add("scale-0", "opacity-0", "pointer-events-none");
+              } else {
+                waButton.classList.remove("scale-0", "opacity-0", "pointer-events-none");
+              }
+            } else {
+              waButton.classList.remove("scale-0", "opacity-0", "pointer-events-none");
+            }
+          });
+        }, {
+          root: null,
+          threshold: 0,
+          rootMargin: "0px",
+        });
+
+        observer.observe(footer);
+      };
+
+      const initAll = () => {
         initReveal();
+        initWhatsAppFooterObserver();
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAll);
+      } else {
+        initAll();
       }
-      document.addEventListener("astro:page-load", initReveal);
+      document.addEventListener("astro:page-load", initAll);
     </script>
   </body>
 </html>
