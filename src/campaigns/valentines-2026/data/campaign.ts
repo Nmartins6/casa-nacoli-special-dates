@@ -6,7 +6,7 @@ export const campaign: Campaign = {
   season: "Dia dos Namorados",
   year: 2026,
   concept: "Presentes feitos com carinho e afeto",
-  whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "55NUMEROAQUI",
+  whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "5551999795488",
   instagramUrl: "https://www.instagram.com/casa_nacoli",
   seo: {
     title:
