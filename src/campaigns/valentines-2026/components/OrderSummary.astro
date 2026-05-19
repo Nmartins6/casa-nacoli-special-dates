@@ -10,7 +10,7 @@ const { campaign } = Astro.props;
 
 <aside
   id="pedido"
-  class="fixed inset-x-0 bottom-0 z-50 border-t border-[#E1B78F] bg-[#fffaf2]/96 shadow-2xl shadow-[#703D25]/25 backdrop-blur-xl lg:left-auto lg:right-5 lg:bottom-5 lg:w-[420px] lg:rounded-3xl lg:border"
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-[#E1B78F] bg-[#fffaf2]/96 shadow-2xl shadow-[#703D25]/25 backdrop-blur-xl lg:left-auto lg:right-5 lg:bottom-5 lg:w-[420px] lg:rounded-3xl lg:border translate-y-full opacity-0 pointer-events-none transition-all duration-500 ease-out"
   data-whatsapp-number={campaign.whatsappNumber}
   aria-label="Resumo do pedido"
 >

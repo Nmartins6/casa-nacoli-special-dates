@@ -26,6 +26,7 @@
   };
 
   let state: CartState = readState();
+  let previousCount = getCartCount(state);
 
   const saveState = () => {
     window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state));
@@ -146,9 +147,17 @@
     state.notes = orderNotes?.value ?? state.notes;
     saveState();
 
+    const currentCount = getCartCount(state);
     if (cartCount) {
-      cartCount.textContent = `(${getCartCount(state)})`;
+      cartCount.textContent = `(${currentCount})`;
     }
+
+    if (currentCount > previousCount && toggleCart) {
+      toggleCart.classList.remove("cart-pulse");
+      void toggleCart.offsetWidth; // force reflow
+      toggleCart.classList.add("cart-pulse");
+    }
+    previousCount = currentCount;
 
     if (productList) {
       productList.replaceChildren();
@@ -204,7 +213,16 @@
 
     const message = formatOrderMessage(state);
     const orderUrl = createWhatsAppLink(phoneNumber, message);
-    const hasItems = getCartCount(state) > 0;
+    const hasItems = currentCount > 0;
+
+    if (cartRoot) {
+      if (hasItems) {
+        cartRoot.classList.remove("translate-y-full", "opacity-0", "pointer-events-none");
+      } else {
+        cartRoot.classList.add("translate-y-full", "opacity-0", "pointer-events-none");
+        setCartOpen(false);
+      }
+    }
 
     if (sendButton) {
       sendButton.href = orderUrl;
@@ -237,7 +255,6 @@
         state.products.push({ id, name, quantity });
       }
 
-      setCartOpen(true);
       render();
     });
   });
