@@ -32,7 +32,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
   <div class="mx-auto max-w-7xl">
     <div class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
 
-      <!-- Painel lateral sticky -->
       <div class="lg:sticky lg:top-24">
         <SectionHeading
           eyebrow="Monte agora"
@@ -69,7 +68,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
         </div>
       </div>
 
-      <!-- Grid de cards -->
       <div class="grid gap-4 md:grid-cols-2">
         {items.map((item) => (
           <article
@@ -77,7 +75,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
             data-basket-id={item.id}
             data-basket-name={item.name}
           >
-            <!-- Cabeçalho sempre visível -->
             <div class="flex items-center gap-4 p-4">
               <BasketItemIcon itemId={item.id} />
               <div class="min-w-0 flex-1">
@@ -85,9 +82,7 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
                 <p class="mt-0.5 text-xs leading-5 text-[#FBEEDE]/80">{item.description}</p>
               </div>
 
-              <!-- Botão adicionar / remover -->
               <div class="shrink-0">
-                <!-- Estado: não selecionado -->
                 <label class="basket-add-label focus-ring flex cursor-pointer items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs font-black text-white transition hover:bg-white/20">
                   <input class="basket-selected sr-only" type="checkbox" />
                   <svg class="basket-icon-add h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -101,11 +96,9 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
               </div>
             </div>
 
-            <!-- Painel de opções (oculto por padrão, revelado ao selecionar) -->
             <div class="basket-options max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
               <div class="grid gap-3 border-t border-white/15 bg-white/5 px-4 pb-4 pt-3">
 
-                <!-- Quantidade -->
                 <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
                   Quantidade
                   <div class="flex items-center gap-2">
@@ -133,7 +126,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
                   </div>
                 </label>
 
-                <!-- Opções específicas por item -->
                 {item.id === "vinho" ? (
                   <div class="grid gap-3">
                     <label class="grid gap-1 text-xs font-bold text-[#FBEEDE]/90">
@@ -145,7 +137,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
                         ))}
                       </select>
                     </label>
-                    <!-- Toggle rótulo personalizado -->
                     <label class="basket-toggle-label flex cursor-pointer items-center justify-between rounded-xl border border-white/20 bg-white/10 px-3 py-2.5">
                       <div>
                         <p class="text-xs font-black text-white">Rótulo personalizado do casal</p>
@@ -263,7 +254,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
               </div>
             </div>
 
-            <!-- Borda de seleção (aparece ao selecionar) -->
             <span class="basket-selected-ring pointer-events-none absolute inset-0 rounded-2xl border-2 border-[#F5A728] opacity-0 transition-opacity duration-300" aria-hidden="true"></span>
           </article>
         ))}
@@ -289,14 +279,11 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
     const personalizedLabel = card.querySelector<HTMLInputElement>(".basket-personalized-label");
 
     const setSelected = (selected: boolean) => {
-      // Expand/collapse options panel
       if (options) {
         options.style.maxHeight = selected ? options.scrollHeight + 300 + "px" : "0";
       }
-      // Ring highlight
       ring?.classList.toggle("opacity-0", !selected);
       ring?.classList.toggle("opacity-100", selected);
-      // Button state
       if (btnText) btnText.textContent = selected ? "Adicionado" : "Adicionar";
       iconAdd?.classList.toggle("hidden", selected);
       iconCheck?.classList.toggle("hidden", !selected);
@@ -314,7 +301,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
       setSelected(checkbox.checked);
     });
 
-    // +/- quantity buttons
     qtyDec?.addEventListener("click", () => {
       if (!qtyInput) return;
       const val = Math.max(1, parseInt(qtyInput.value) - 1);
@@ -328,7 +314,6 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
       qtyInput.dispatchEvent(new Event("change"));
     });
 
-    // Toggle pill for personalized label
     personalizedLabel?.addEventListener("change", () => {
       const on = personalizedLabel.checked;
       toggleTrack?.classList.toggle("bg-[#F5A728]", on);
@@ -336,10 +321,8 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
       toggleThumb?.style.setProperty("transform", on ? "translateX(16px)" : "translateX(0)");
     });
 
-    // Restore state if already saved
     if (checkbox?.checked) {
       setSelected(true);
-      // restore toggle
       if (personalizedLabel?.checked) {
         toggleTrack?.classList.add("bg-[#F5A728]");
         toggleTrack?.classList.remove("bg-white/20");

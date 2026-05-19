@@ -70,7 +70,7 @@ const faqs = [
   </div>
 </section>
 
-<!-- Carrossel de depoimentos -->
+
 <section class="overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
     <SectionHeading
@@ -80,16 +80,16 @@ const faqs = [
     />
 
     <div class="relative mt-10">
-      <!-- Viewport de clipping -->
+
       <div id="testimonials-viewport" class="overflow-hidden">
-        <!-- Track deslizante -->
+
         <div id="testimonials-track" class="flex gap-4 transition-transform duration-700 ease-in-out will-change-transform">
           {[...testimonials, ...testimonials].map((t, i) => (
             <article
               class="testimonial-card shrink-0 rounded-2xl border border-[#E1B78F]/70 bg-[#FBEEDE]/70 p-5"
               aria-hidden={i >= testimonials.length ? "true" : "false"}
             >
-              <!-- Estrelas -->
+
               <div class="flex gap-0.5" aria-label={`${t.stars} estrelas`}>
                 {Array.from({ length: t.stars }).map(() => (
                   <svg class="h-4 w-4 fill-[#F5A728]" viewBox="0 0 20 20" aria-hidden="true">
@@ -97,11 +97,11 @@ const faqs = [
                   </svg>
                 ))}
               </div>
-              <!-- Texto -->
+
               <blockquote class="mt-3 text-sm leading-6 text-[#703D25]">
                 "{t.comment}"
               </blockquote>
-              <!-- Nome -->
+
               <figcaption class="mt-3 text-xs font-black text-[#C06445]">
                 {t.name}
               </figcaption>
@@ -110,7 +110,7 @@ const faqs = [
         </div>
       </div>
 
-      <!-- Indicadores -->
+
       <div id="testimonials-dots" class="mt-6 flex justify-center gap-2" aria-label="Navegação do carrossel">
         {testimonials.map((_, i) => (
           <button
@@ -132,7 +132,7 @@ const faqs = [
   if (track && viewport) {
     const cards = Array.from(track.querySelectorAll<HTMLElement>(".testimonial-card"));
     const total = dots.length;
-    const GAP = 16; // gap-4 = 16px
+    const GAP = 16;
 
     let current = 0;
     let timer: ReturnType<typeof setInterval>;
@@ -143,7 +143,7 @@ const faqs = [
       return 1;
     };
 
-    // Calcula e aplica largura real dos cards com base no container
+
     const setCardWidths = () => {
       const containerW = viewport.clientWidth;
       const visible = getVisible();
@@ -171,7 +171,7 @@ const faqs = [
       track.style.transform = `translateX(-${offset}px)`;
       setActive(current);
 
-      // Loop silencioso ao voltar ao início
+
       if (current === 0) {
         setTimeout(() => {
           track.style.transition = "none";
@@ -209,7 +209,7 @@ const faqs = [
 
     window.addEventListener("resize", () => { setCardWidths(); goTo(current); }, { passive: true });
 
-    // Inicializa
+
     setCardWidths();
     setActive(0);
     startTimer();

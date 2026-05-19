@@ -43,17 +43,13 @@ corepack enable
 
 ## Configurar WhatsApp
 
-O número fica em:
+O número é configurado por variável de ambiente. Crie ou edite o arquivo `.env` na raiz do projeto:
 
-```ts
-src/campaigns/valentines-2026/data/campaign.ts
+```env
+PUBLIC_WHATSAPP_NUMBER="5551999795488"
 ```
 
-Altere `whatsappNumber` para o telefone real no formato internacional, sem espaços:
-
-```ts
-whatsappNumber: "5511999999999"
-```
+O valor padrão é lido em `src/campaigns/valentines-2026/data/campaign.ts`.
 
 O link final é gerado por:
 
@@ -97,7 +93,7 @@ O projeto já inclui `vercel.json` com comandos padrão:
 - Build: `yarn build`
 - Dev: `yarn dev`
 
-Na Vercel, importe o repositório, confirme o framework Astro e publique. Antes do deploy final, configure o número real do WhatsApp.
+Na Vercel, importe o repositório, confirme o framework Astro e publique. Lembre-se de adicionar a variável de ambiente `PUBLIC_WHATSAPP_NUMBER` nas configurações do projeto (Settings > Environment Variables) da Vercel para que o número correto seja usado.
 
 ## Próximos passos sugeridos
 

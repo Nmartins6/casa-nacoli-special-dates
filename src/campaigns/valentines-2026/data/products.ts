@@ -9,7 +9,7 @@ export const products: Product[] = [
     description:
       "Clássica, delicada e versátil. Ideal para uma arte limpa, uma declaração curta ou uma lembrança cheia de significado.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/caneca-branca.svg",
+    image: "/assets/valentines-2026/products/caneca-branca.webp",
     imageAlt: "Caneca branca personalizada",
   },
   {
@@ -19,7 +19,7 @@ export const products: Product[] = [
     description:
       "Par de canecas para combinar histórias, datas, apelidos e pequenos detalhes que só o casal entende.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/caneca-personalizada-casal.svg",
+    image: "/assets/valentines-2026/products/caneca-casal.webp",
     imageAlt: "Par de canecas personalizadas para casal",
     featured: true,
   },
@@ -31,7 +31,7 @@ export const products: Product[] = [
     description:
       "A surpresa aparece com o calor da bebida. Uma escolha charmosa para revelar foto, frase ou pedido especial.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/caneca-magica.svg",
+    image: "/assets/valentines-2026/products/caneca-magica.webp",
     imageAlt: "Caneca mágica personalizada",
     featured: true,
   },
@@ -42,7 +42,7 @@ export const products: Product[] = [
     description:
       "Um toque de cor para deixar o presente mais alegre, combinando a arte com o estilo de quem vai receber.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/caneca-colorida.svg",
+    image: "/assets/valentines-2026/products/caneca-alca-colorida.webp",
     imageAlt: "Caneca com alça e interior colorido",
     colorConsulta: true,
   },
@@ -53,7 +53,7 @@ export const products: Product[] = [
     description:
       "Uma caneca romântica na medida, com alça em formato de coração e personalização feita sob encomenda.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/caneca-coracao.svg",
+    image: "/assets/valentines-2026/products/caneca-alca-coracao.webp",
     imageAlt: "Caneca personalizada com alça de coração",
   },
   {
@@ -63,7 +63,7 @@ export const products: Product[] = [
     description:
       "Uma lembrança para ficar à vista: foto, arte ou frase em azulejo 15x15cm com suporte para decorar com afeto.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/azulejo-15x15.svg",
+    image: "/assets/valentines-2026/products/azulejo.webp",
     imageAlt: "Azulejo personalizado 15x15cm com suporte",
     featured: true,
   },
@@ -74,7 +74,7 @@ export const products: Product[] = [
     description:
       "Pequeno no tamanho, grande na memória. Perfeito para eternizar uma foto, uma data ou uma frase carinhosa.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/ima-mdf-5x5.svg",
+    image: "/assets/valentines-2026/products/ima-geladeira.webp",
     imageAlt: "Imã de geladeira em MDF personalizado",
   },
   {
@@ -84,7 +84,7 @@ export const products: Product[] = [
     description:
       "Uma placa personalizada para transformar um momento em peça decorativa, com acabamento artesanal e presença.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/quadro-mdf-sublimado.svg",
+    image: "/assets/valentines-2026/products/quadro-mdf.webp",
     imageAlt: "Placa MDF sublimada personalizada",
   },
   {
@@ -94,7 +94,7 @@ export const products: Product[] = [
     description:
       "Para montar juntinhos: uma foto especial vira um presente interativo, divertido e cheio de significado.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/quebra-cabeca-personalizado.svg",
+    image: "/assets/valentines-2026/products/quebra-cabecas.webp",
     imageAlt: "Quebra-cabeça personalizado com foto",
   },
   {
@@ -104,7 +104,7 @@ export const products: Product[] = [
     description:
       "Um brinde com a cara do casal. O rótulo personalizado deixa o vinho pronto para virar momento especial.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/vinho-rotulo-personalizado.svg",
+    image: "/assets/valentines-2026/products/vinho-personalizado.webp",
     imageAlt: "Vinho com rótulo personalizado",
     featured: true,
   },
@@ -115,7 +115,7 @@ export const products: Product[] = [
     description:
       "Uma lembrança prática para carregar o seu amor por onde for.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/chaveiro-mdf-personalizado.svg",
+    image: "/assets/valentines-2026/products/chaveiro-mdf.webp",
     imageAlt: "Chaveiro MDF personalizado",
   },
   {
@@ -125,7 +125,7 @@ export const products: Product[] = [
     description:
       "Cartões, bilhetes, artes e detalhes impressos para completar o presente com aquela camada de cuidado.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/impressoes-personalizadas.svg",
+    image: "/assets/valentines-2026/products/impressao-personalizada.webp",
     imageAlt: "Impressões personalizadas para presentes",
   },
   {
@@ -135,7 +135,7 @@ export const products: Product[] = [
     description:
       "Uma camiseta feita para vestir memória: frase interna do casal, foto, ilustração ou arte especial.",
     price: "sob consulta",
-    image: "/assets/valentines-2026/products/camiseta-personalizada.svg",
+    image: "/assets/valentines-2026/products/camiseta-personalizada.webp",
     imageAlt: "Camiseta personalizada",
   },
 ];

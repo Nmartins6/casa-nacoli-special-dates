@@ -7,7 +7,7 @@ export const campaign: Campaign = {
   year: 2026,
   concept: "Presentes feitos com carinho e afeto",
   whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "55NUMEROAQUI",
-  instagramUrl: "https://www.instagram.com/casanacoli",
+  instagramUrl: "https://www.instagram.com/casa_nacoli",
   seo: {
     title:
       "Casa Nacoli | Cesta personalizada Dia dos Namorados 2026",

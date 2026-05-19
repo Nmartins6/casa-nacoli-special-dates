@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Item para cesta personalizada">
-  <rect width="160" height="160" rx="28" fill="#FBEEDE"/>
-  <circle cx="116" cy="40" r="22" fill="#F5A728"/>
-  <path d="M37 70h86l-10 48H47L37 70Z" fill="#E1B78F" stroke="#703D25" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M52 70c3-29 53-29 56 0" fill="none" stroke="#703D25" stroke-width="6" stroke-linecap="round"/>
-  <path d="M80 91c10-16 34-7 29 12-3 12-17 20-29 28-12-8-26-16-29-28-5-19 19-28 29-12Z" fill="#C06445"/>
-</svg>

@@ -22,58 +22,90 @@ const categoryAnchors = categories.map((category) => ({
       description="Lembranças que podem entrar junto na cesta ou virar um presente individual para deixar essa data ainda mais especial."
     />
 
-    <div class="mt-8 flex gap-2 overflow-x-auto pb-2" aria-label="Categorias de produtos">
-      {categoryAnchors.map((category) => (
-        <a class="focus-ring shrink-0 rounded-full border border-[#E1B78F] bg-white/65 px-4 py-2 text-sm font-bold text-[#703D25]" href={category.target}>
-          {category.name}
-        </a>
-      ))}
+    <div
+      class="mt-8 flex gap-2 overflow-x-auto pb-2"
+      aria-label="Categorias de produtos"
+    >
+      {
+        categoryAnchors.map((category) => (
+          <a
+            class="focus-ring shrink-0 rounded-full border border-[#E1B78F] bg-white/65 px-4 py-2 text-sm font-bold text-[#703D25]"
+            href={category.target}
+          >
+            {category.name}
+          </a>
+        ))
+      }
     </div>
 
     <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {products.map((product) => (
-        <article
-          id={`produto-${product.id}`}
-          class="product-card flex h-full flex-col overflow-hidden rounded-2xl border border-[#E1B78F]/70 bg-white/72 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-[#703D25]/10"
-          data-product-id={product.id}
-          data-product-name={product.name}
-        >
-          <div class="relative">
-            <img src={product.image} alt={product.imageAlt} class="h-44 w-full object-cover" width="640" height="360" loading="lazy" />
-            <span class="absolute left-4 top-4 rounded-full bg-[#FBEEDE] px-3 py-1 text-xs font-black text-[#C06445]">
-              {product.category}
-            </span>
-            {product.featured && (
-              <span class="absolute right-4 top-4 rounded-full bg-[#2F7CB6] px-3 py-1 text-xs font-black text-white">
-                Queridinho
+      {
+        products.map((product) => (
+          <article
+            id={`produto-${product.id}`}
+            class="product-card flex h-full flex-col overflow-hidden rounded-2xl border border-[#E1B78F]/70 bg-white/72 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-[#703D25]/10"
+            data-product-id={product.id}
+            data-product-name={product.name}
+          >
+            <div class="relative flex items-center justify-center">
+              <img
+                src={product.image}
+                alt={product.imageAlt}
+                class="aspect-square w-full object-contain p-4"
+                width="640"
+                height="640"
+                loading="lazy"
+              />
+              <span class="absolute left-4 top-4 rounded-full bg-[#FBEEDE] px-3 py-1 text-xs font-black text-[#C06445]">
+                {product.category}
               </span>
-            )}
-          </div>
-          <div class="flex flex-1 flex-col p-5">
-            <h3 class="text-xl font-black leading-tight text-[#703D25]">{product.name}</h3>
-            <p class="mt-3 flex-1 text-sm leading-6 text-[#6f4a35]">{product.description}</p>
-            <p class="mt-4 text-sm font-black text-[#C06445]">
-              {product.price === "sob consulta" || !product.price ? "Preço sob consulta" : `R$ ${product.price.toFixed(2)}`}
-            </p>
-
-            <div class="mt-4 grid gap-3">
-
-
-              <label class="grid gap-1 text-sm font-bold text-[#703D25]">
-                Quantidade
-                <input class="product-quantity focus-ring min-h-11 rounded-xl border border-[#E1B78F] bg-white px-3 text-sm" type="number" min="1" value="1" inputmode="numeric" />
-              </label>
-
-              <button class="add-product focus-ring min-h-12 rounded-full bg-[#703D25] px-5 text-sm font-black text-white transition hover:bg-[#C06445]" type="button">
-                Adicionar ao pedido
-              </button>
+              {product.featured && (
+                <span class="absolute right-4 top-4 rounded-full bg-[#2F7CB6] px-3 py-1 text-xs font-black text-white">
+                  Queridinho
+                </span>
+              )}
             </div>
-          </div>
-        </article>
-      ))}
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="text-xl font-black leading-tight text-[#703D25]">
+                {product.name}
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-6 text-[#6f4a35]">
+                {product.description}
+              </p>
+              <p class="mt-4 text-sm font-black text-[#C06445]">
+                {product.price === "sob consulta" || !product.price
+                  ? "Preço sob consulta"
+                  : `R$ ${product.price.toFixed(2)}`}
+              </p>
+
+              <div class="mt-4 grid gap-3">
+                <label class="grid gap-1 text-sm font-bold text-[#703D25]">
+                  Quantidade
+                  <input
+                    class="product-quantity focus-ring min-h-11 rounded-xl border border-[#E1B78F] bg-white px-3 text-sm"
+                    type="number"
+                    min="1"
+                    value="1"
+                    inputmode="numeric"
+                  />
+                </label>
+
+                <button
+                  class="add-product focus-ring min-h-12 rounded-full bg-[#703D25] px-5 text-sm font-black text-white transition hover:bg-[#C06445]"
+                  type="button"
+                >
+                  Adicionar ao pedido
+                </button>
+              </div>
+            </div>
+          </article>
+        ))
+      }
     </div>
 
-    <div class="mt-10 rounded-2xl border border-[#2F7CB6]/25 bg-[#2F7CB6]/10 p-5 text-[#214c6f]">
+    <div
+      class="mt-10 rounded-2xl border border-[#2F7CB6]/25 bg-[#2F7CB6]/10 p-5 text-[#214c6f]"
+    >
       <p class="font-black">Não encontrou o item perfeito?</p>
       <p class="mt-1 text-sm leading-6">
         Chame a gente no WhatsApp e vamos montar o presente ideal juntos.
