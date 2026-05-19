@@ -10,7 +10,7 @@ export const campaign: Campaign = {
   instagramUrl: "https://www.instagram.com/casa_nacoli",
   seo: {
     title:
-      "Casa Nacoli | Cesta personalizada Dia dos Namorados 2026",
+      "💝 Casa Nacoli | Cesta personalizada Dia dos Namorados 2026",
     description:
       "Monte uma cesta personalizada de Dia dos Namorados com vinho, doces, mimos e presentes artesanais da Casa Nacoli. Pedido direto pelo WhatsApp.",
     keywords: [
