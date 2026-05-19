@@ -218,8 +218,10 @@
     if (cartRoot) {
       if (hasItems) {
         cartRoot.classList.remove("translate-y-full", "opacity-0", "pointer-events-none");
+        document.body.classList.add("has-cart");
       } else {
         cartRoot.classList.add("translate-y-full", "opacity-0", "pointer-events-none");
+        document.body.classList.remove("has-cart");
         setCartOpen(false);
       }
     }
