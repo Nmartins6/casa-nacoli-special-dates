@@ -16,7 +16,7 @@ const quickMessage = formatOrderMessage({
 const whatsappUrl = createWhatsAppLink(campaign.whatsappNumber, quickMessage);
 ---
 
-<header class="sticky top-0 z-40 border-b border-[#E1B78F]/45 bg-[#FBEEDE]/92 backdrop-blur-xl">
+<header class="sticky top-0 z-40 border-b border-[#E1B78F]/45 bg-[#FBEEDE]/92 backdrop-blur-xl transition-all duration-300">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
     <a href="#inicio" class="focus-ring flex min-w-0 items-center gap-3 rounded-md" aria-label="Casa Nacoli">
       <img
@@ -98,4 +98,18 @@ const whatsappUrl = createWhatsAppLink(campaign.whatsappNumber, quickMessage);
       link.addEventListener("click", toggleMenu);
     });
   }
+
+  // Scroll styling logic for header elevation
+  const header = document.querySelector("header");
+  const handleScroll = () => {
+    if (window.scrollY > 12) {
+      header?.classList.add("shadow-md", "border-[#E1B78F]/60", "bg-[#FBEEDE]/96");
+      header?.classList.remove("border-[#E1B78F]/45", "bg-[#FBEEDE]/92");
+    } else {
+      header?.classList.remove("shadow-md", "border-[#E1B78F]/60", "bg-[#FBEEDE]/96");
+      header?.classList.add("border-[#E1B78F]/45", "bg-[#FBEEDE]/92");
+    }
+  };
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll();
 </script>

@@ -32,7 +32,7 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
   <div class="mx-auto max-w-7xl">
     <div class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
 
-      <div class="lg:sticky lg:top-24">
+      <div class="reveal reveal-left lg:sticky lg:top-24">
         <SectionHeading
           eyebrow="Monte agora"
           title="Selecione os itens ideais. A gente cuida dos detalhes com você."
@@ -68,7 +68,7 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
         </div>
       </div>
 
-      <div class="grid gap-4 md:grid-cols-2">
+      <div class="reveal reveal-up delay-200 grid gap-4 md:grid-cols-2">
         {items.map((item) => (
           <article
             class="basket-card group relative min-w-0 overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-sm backdrop-blur transition-all duration-300"
@@ -279,6 +279,7 @@ const customRequestUrl = createWhatsAppLink(campaign.whatsappNumber, customReque
     const personalizedLabel = card.querySelector<HTMLInputElement>(".basket-personalized-label");
 
     const setSelected = (selected: boolean) => {
+      card.classList.toggle("is-selected", selected);
       if (options) {
         options.style.maxHeight = selected ? options.scrollHeight + 300 + "px" : "0";
       }

@@ -47,5 +47,33 @@ const jsonLd = {
   </head>
   <body>
     <slot />
+    <script>
+      const initReveal = () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px 0px -8% 0px",
+          threshold: 0.05,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("reveal-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll(".reveal");
+        revealElements.forEach((el) => observer.observe(el));
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initReveal);
+      } else {
+        initReveal();
+      }
+      document.addEventListener("astro:page-load", initReveal);
+    </script>
   </body>
 </html>

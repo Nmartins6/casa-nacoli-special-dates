@@ -61,3 +61,103 @@ textarea {
     transform: translateY(0);
   }
 }
+
+/* Float animation for Hero images */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1.5deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Scroll Reveal base styles */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0.21, 0.6, 0.35, 1), transform 0.85s cubic-bezier(0.21, 0.6, 0.35, 1);
+  will-change: transform, opacity;
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: none !important;
+}
+
+.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-down {
+  transform: translateY(-28px);
+}
+
+.reveal-left {
+  transform: translateX(-28px);
+}
+
+.reveal-right {
+  transform: translateX(28px);
+}
+
+.reveal-zoom {
+  transform: scale(0.96);
+}
+
+/* Staggered animation delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+.delay-600 { transition-delay: 600ms; }
+.delay-700 { transition-delay: 700ms; }
+
+/* FAQ Smooth Sweep */
+details[open] summary ~ * {
+  animation: sweep 0.35s cubic-bezier(0.21, 0.6, 0.35, 1) both;
+}
+
+@keyframes sweep {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Basket card selected micro-interaction */
+.basket-card {
+  transition: all 0.35s cubic-bezier(0.21, 0.6, 0.35, 1) !important;
+}
+
+.basket-card.is-selected {
+  transform: scale(1.025);
+  box-shadow: 0 12px 30px rgba(245, 167, 40, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(245, 167, 40, 0.45) !important;
+}
+
+/* Cart Panel scale up animation */
+@keyframes slideUpCart {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cart-panel-animate {
+  animation: slideUpCart 0.35s cubic-bezier(0.21, 0.6, 0.35, 1) both;
+}
+

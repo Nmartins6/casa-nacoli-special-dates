@@ -52,16 +52,18 @@ const faqs = [
 
 <section class="px-4 py-16 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
-    <SectionHeading
-      eyebrow="Confiança"
-      title="Um pedido simples, próximo e feito com cuidado"
-      description="A compra acontece pelo WhatsApp para manter o atendimento humano e facilitar ajustes importantes antes da produção."
-      align="center"
-    />
+    <div class="reveal reveal-up">
+      <SectionHeading
+        eyebrow="Confiança"
+        title="Um pedido simples, próximo e feito com cuidado"
+        description="A compra acontece pelo WhatsApp para manter o atendimento humano e facilitar ajustes importantes antes da produção."
+        align="center"
+      />
+    </div>
 
     <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {trustItems.map(([title, text]) => (
-        <article class="rounded-2xl border border-[#E1B78F]/70 bg-white/65 p-5">
+      {trustItems.map(([title, text], idx) => (
+        <article class={`reveal reveal-up delay-${(idx + 1) * 100} rounded-2xl border border-[#E1B78F]/70 bg-white/65 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:bg-white`}>
           <h3 class="font-black text-[#703D25]">{title}</h3>
           <p class="mt-2 text-sm leading-6 text-[#6f4a35]">{text}</p>
         </article>
@@ -73,20 +75,22 @@ const faqs = [
 
 <section class="overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
-    <SectionHeading
-      eyebrow="Depoimentos"
-      title="O que nossos clientes dizem"
-      align="center"
-    />
+    <div class="reveal reveal-up">
+      <SectionHeading
+        eyebrow="Depoimentos"
+        title="O que nossos clientes dizem"
+        align="center"
+      />
+    </div>
 
-    <div class="relative mt-10">
+    <div class="reveal reveal-up delay-200 relative mt-10">
 
       <div id="testimonials-viewport" class="overflow-hidden">
 
         <div id="testimonials-track" class="flex gap-4 transition-transform duration-700 ease-in-out will-change-transform">
           {[...testimonials, ...testimonials].map((t, i) => (
             <article
-              class="testimonial-card shrink-0 rounded-2xl border border-[#E1B78F]/70 bg-[#FBEEDE]/70 p-5"
+              class="testimonial-card shrink-0 rounded-2xl border border-[#E1B78F]/70 bg-[#FBEEDE]/70 p-5 transition-all duration-300 hover:shadow-md hover:bg-white/80"
               aria-hidden={i >= testimonials.length ? "true" : "false"}
             >
 
@@ -218,14 +222,16 @@ const faqs = [
 
 <section id="faq" class="px-4 pb-28 pt-6 sm:px-6 lg:px-8 lg:pb-16">
   <div class="mx-auto max-w-4xl">
-    <SectionHeading eyebrow="FAQ" title="Dúvidas rápidas antes de pedir" align="center" />
-    <div class="mt-8 divide-y divide-[#E1B78F] overflow-hidden rounded-2xl border border-[#E1B78F] bg-white/72">
+    <div class="reveal reveal-up">
+      <SectionHeading eyebrow="FAQ" title="Dúvidas rápidas antes de pedir" align="center" />
+    </div>
+    <div class="reveal reveal-up delay-200 mt-8 divide-y divide-[#E1B78F] overflow-hidden rounded-2xl border border-[#E1B78F] bg-white/72">
       {faqs.map(([question, answer]) => (
-        <details class="group p-5">
-          <summary class="cursor-pointer list-none text-base font-black text-[#703D25]">
+        <details class="group p-5 transition-colors duration-300 hover:bg-[#FBEEDE]/25">
+          <summary class="cursor-pointer list-none text-base font-black text-[#703D25] focus:outline-none">
             <span class="inline-flex w-full items-center justify-between gap-4">
               {question}
-              <span class="shrink-0 text-xl font-black text-[#C06445]">
+              <span class="shrink-0 text-xl font-black text-[#C06445] transition-transform duration-300 group-open:rotate-180">
                 <span class="group-open:hidden">+</span>
                 <span class="hidden group-open:inline">−</span>
               </span>

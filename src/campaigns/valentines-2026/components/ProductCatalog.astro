@@ -29,7 +29,7 @@ const categoryAnchors = categories.map((category) => ({
       {
         categoryAnchors.map((category) => (
           <a
-            class="focus-ring shrink-0 rounded-full border border-[#E1B78F] bg-white/65 px-4 py-2 text-sm font-bold text-[#703D25]"
+            class="focus-ring shrink-0 rounded-full border border-[#E1B78F] bg-white/65 px-4 py-2 text-sm font-bold text-[#703D25] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-[#C06445] hover:shadow-sm"
             href={category.target}
           >
             {category.name}
@@ -40,27 +40,27 @@ const categoryAnchors = categories.map((category) => ({
 
     <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {
-        products.map((product) => (
+        products.map((product, idx) => (
           <article
             id={`produto-${product.id}`}
-            class="product-card flex h-full flex-col overflow-hidden rounded-2xl border border-[#E1B78F]/70 bg-white/72 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-[#703D25]/10"
+            class={`reveal reveal-up delay-${((idx % 3) + 1) * 100} product-card group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E1B78F]/70 bg-white/72 shadow-sm transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#703D25]/12`}
             data-product-id={product.id}
             data-product-name={product.name}
           >
-            <div class="relative flex items-center justify-center">
+            <div class="relative flex items-center justify-center overflow-hidden">
               <img
                 src={product.image}
                 alt={product.imageAlt}
-                class="aspect-square w-full object-contain p-4"
+                class="aspect-square w-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-105"
                 width="640"
                 height="640"
                 loading="lazy"
               />
-              <span class="absolute left-4 top-4 rounded-full bg-[#FBEEDE] px-3 py-1 text-xs font-black text-[#C06445]">
+              <span class="absolute left-4 top-4 rounded-full bg-[#FBEEDE] px-3 py-1 text-xs font-black text-[#C06445] transition-transform duration-300 group-hover:scale-105">
                 {product.category}
               </span>
               {product.featured && (
-                <span class="absolute right-4 top-4 rounded-full bg-[#2F7CB6] px-3 py-1 text-xs font-black text-white">
+                <span class="absolute right-4 top-4 rounded-full bg-[#2F7CB6] px-3 py-1 text-xs font-black text-white transition-transform duration-300 group-hover:scale-105">
                   Queridinho
                 </span>
               )}

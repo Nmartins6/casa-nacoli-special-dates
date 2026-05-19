@@ -37,7 +37,13 @@
   };
 
   const setCartOpen = (isOpen: boolean) => {
-    cartPanel?.classList.toggle("hidden", !isOpen);
+    if (isOpen) {
+      cartPanel?.classList.remove("hidden");
+      cartPanel?.classList.add("cart-panel-animate");
+    } else {
+      cartPanel?.classList.add("hidden");
+      cartPanel?.classList.remove("cart-panel-animate");
+    }
     toggleCart?.setAttribute("aria-expanded", String(isOpen));
     if (cartToggleLabel) {
       cartToggleLabel.textContent = isOpen ? "Ocultar resumo" : "Ver resumo";

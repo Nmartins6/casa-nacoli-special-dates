@@ -11,9 +11,9 @@ const benefits = [
   <div class="mx-auto max-w-7xl">
     <h2 id="beneficios-title" class="sr-only">Benefícios dos presentes personalizados</h2>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {benefits.map(([title, text]) => (
-        <article class="rounded-2xl border border-[#E1B78F]/65 bg-white/55 p-5 shadow-sm">
-          <div class="mb-4 h-1.5 w-14 rounded-full bg-[#F5A728]"></div>
+      {benefits.map(([title, text], idx) => (
+        <article class={`reveal reveal-up delay-${(idx + 1) * 100} rounded-2xl border border-[#E1B78F]/65 bg-white/55 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:bg-white group`}>
+          <div class="mb-4 h-1.5 w-14 rounded-full bg-[#F5A728] transition-all duration-300 group-hover:w-20"></div>
           <h3 class="text-lg font-black text-[#703D25]">{title}</h3>
           <p class="mt-2 text-sm leading-6 text-[#6f4a35]">{text}</p>
         </article>
